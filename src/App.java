@@ -4,19 +4,20 @@ public class App {
 	private static final int FRAME_LOCATION_X = 100;
 	private static final int FRAME_LOCATION_Y = 100;
 	
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		
 		
 		JFrame frame=new JFrame("Pac man");
 		PackManview view =new PackManview();
 		frame.setLocation(FRAME_LOCATION_X, FRAME_LOCATION_Y);
 		frame.add(view);
-		frame.setSize(view.getSize());
+	    frame.setSize(view.getSize());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		
+	
+
 		//2 red 3 green 4gray 5pink
-		Personage_pacman pacman=new Personage_pacman();
+Personage_pacman pacman=new Personage_pacman();
 		Personage_fantome fontome1=new Personage_fantome(2);
 		Personage_fantome fontome2=new Personage_fantome(3);
 		Personage_fantome fontome3=new Personage_fantome(4);
