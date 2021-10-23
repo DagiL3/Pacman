@@ -22,7 +22,7 @@ Personage_pacman pacman=new Personage_pacman();
 		Personage_fantome fontome2=new Personage_fantome(3);
 		Personage_fantome fontome3=new Personage_fantome(4);
 		Personage_fantome fontome4=new Personage_fantome(5);
-	    	Game game1=new Game(pacman,fontome1,fontome2,fontome3,fontome4);
+	    	Game game1=new Game();
 	    	game1.addbloc();
 	    	game1.addPacgamme();
 	    	game1.afficheBord();

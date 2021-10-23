@@ -1,24 +1,11 @@
-
 public class  Game {
-   private Pacgomme[][] borde = new Pacgomme[10][10];
-   private Pacgomme bloc=new Pacgomme(Pacgomme_type.OBSTACLE);
-   private Personage_pacman pacman;
-   private Personage_fantome fantom1;
-   private Personage_fantome fantom2;
-   private Personage_fantome fantom3;
-   private Personage_fantome fantom4;
+	
+   private Bord[][] borde = new Bord[10][10];
    private static final int numberPacgammes =75; //100 food 
-   
-    public Game(Personage_pacman pacman,Personage_fantome fantom1,Personage_fantome fantom2,
-    		Personage_fantome fantom3,Personage_fantome fantom4){
-    	this.pacman=pacman;
-    	this.fantom1=fantom1;
-    	this.fantom1=fantom2;
-    	this.fantom1=fantom3;
-    	this.fantom1=fantom4;	
-    	
-    }
-    
+   private Bord bloc =new Bord(new Obstacle());
+ 
+       
+    // view 
     public void addbloc(){
     	borde[1][1]=bloc;
     	borde[4][1]=bloc;
@@ -47,29 +34,37 @@ public class  Game {
     	borde[8][9]=bloc;
     	borde[2][9]=bloc;
     }
-    
     public void addPacgamme(){
     	for(int i=0;i<borde.length;i++) {
     		for(int j=0;j<borde[i].length;j++) {
     			if(borde[i][j]==null)
-    				borde[i][j]=new Pacgomme(Pacgomme_type.BLEU);
-    			
+    				borde[i][j]=new Bord(new MyPacgomme(Pacgomme.BLEU));
     			}
-    	}
-    			
+    	   }			
     }
-    public void afficheBord(){
-    	
+    public Boolean afficheBord(){
     	for(int i=0;i<borde.length;i++) {
     		for(int j=0;j<borde[i].length;j++) {
-    			System.out.print(borde[i][j].type);
-    			System.out.print(" ");
-    	      }
-    		
+    			switch(borde[i][j].getType())
+    			{
+    			case PACKGOMME:
+    			//MyPacgomme e=borde[i][j].getMyPacgome().getType();
+    				System.out.print(borde[i][j].getMyPacgome().getPacgome());
+    				System.out.print(" ");
+					break;
+    			
+    			case OBSTACLE:
+    				
+    				System.out.print(borde[i][j].getType());
+    				System.out.print(" ");
+					break;
+    			}	
+    		} 		
     		System.out.println();
-    	 }//System.out.print(borde[1][1]);
+    	}  return true;
     }
-    }
+    
+}
 
     
     
