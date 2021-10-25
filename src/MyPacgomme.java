@@ -8,7 +8,12 @@ enum Pacgomme {
 		
 		public  MyPacgomme(Pacgomme pacgom){
 			this.pacgom=pacgom;
-			this.type=Element.PACKGOMME;
+			this.type=Element.PACGOMME;
+		}
+		
+		public void setPacgomme(){
+			this.pacgom=null;
+			this.type=null;
 		}
 		
 		public Pacgomme getPacgome() {

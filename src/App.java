@@ -13,7 +13,7 @@ public class App {
 		frame.add(view);
 	    frame.setSize(view.getSize());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		//frame.setVisible(true);
 	
 
 		//2 red 3 green 4gray 5pink
@@ -25,7 +25,10 @@ Personage_pacman pacman=new Personage_pacman();
 	    	Game game1=new Game();
 	    	game1.addbloc();
 	    	game1.addPacgamme();
+	    	System.out.print("hello");
 	    	game1.afficheBord();
+	    	game1.move(0, 0);
+	    	//game1.afficheBord();
 	}
 	
 }

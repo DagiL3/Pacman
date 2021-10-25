@@ -3,6 +3,7 @@ public class Obstacle {
   private int color;
   private Element type;
   
+  
   public Obstacle(){
 	  this.color=3;
 	  this.type=Element.OBSTACLE;

@@ -1,58 +1,25 @@
 
-public class Personage_pacman {
+public class Personage_pacman  {
 
 	private  int vie;
 	private  int color;
 	private  int point;
 	public Element type;
+	private int posX;
+	private int posY;
 	
-	public int getVie() {
-		return vie;
-	}
-
-	public void setVie(int vie) {
-		this.vie = vie;
-	}
-
-	public int getColor() {
-		return color;
-	}
-
-	public void setColor(int color) {
-		this.color = color;
-	}
-
-	public int getPoint() {
-		return point;
-	}
-
-	public void setPoint(int point) {
-		this.point = point;
-	}
-
-	public Object getType() {
-		return type;
-	}
-
-	public void setType(Element type) {
-		this.type = type;
-	}
-
 	public Personage_pacman(){
 		this.vie=3;
 		this.color=1;//yellow
 		this.point=0;
-		this.type=Element.PACKMAN;
+		this.type=Element.PACMAN;
+		this.posX=0;
+		this.posY=0;
 	}
 	
-	public void addVie(){
-		this.vie++;
-	}
-	public void subVie(){
-		this.vie--;
-	}
 	public void mangePacgomme(MyPacgomme g){
 		addPoints(g);
+		g.setPacgomme();
 		//no_pacgomme --;
 	}
 	
@@ -74,6 +41,52 @@ public class Personage_pacman {
 	   }
 		
 	}
+	 
+		public int getVie() {
+			return vie;
+		}
+
+		public void setVie(int vie) {
+			this.vie = vie;
+		}
+
+		public int getColor() {
+			return color;
+		}
+
+		public void setColor(int color) {
+			this.color = color;
+		}
+
+		public int getPoint() {
+			return point;
+		}
+
+		public void setPoint(int point) {
+			this.point = point;
+		}
+
+		public Object getType() {
+			return type;
+		}
+
+		public void setType(Element type) {
+			this.type = type;
+		}
+		
+		public int getPosX() {
+			return posX;
+		}
+		public void setPosX(int posX) {
+			this.posX = posX;
+		}
+		public int getPosY() {
+			return posY;
+		}
+		public void setPosY(int posY) {
+			this.posY = posY;
+		}
 }
+
 	
 
