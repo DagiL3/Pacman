@@ -237,6 +237,10 @@ public class  Game {
 		   }return (getCell(pacman.getPosX(),pacman.getPosY()));
 	   
     }
+	public Bord[][] getBorde() {
+		// TODO Auto-generated method stub
+		return this.borde;
+	}
     
 
     

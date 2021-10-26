@@ -1,19 +1,20 @@
 import javax.swing.JFrame;
 
 public class App {
-	private static final int FRAME_LOCATION_X = 100;
-	private static final int FRAME_LOCATION_Y = 100;
+	private static final int FRAME_LOCATION_X = 0;
+	private static final int FRAME_LOCATION_Y = 0;
 	
 	public static void main(String[] args) {
 		
 		
 		JFrame frame=new JFrame("Pac man");
-		PackManview view =new PackManview();
+		Game game1=new Game();
+		PackManview view =new PackManview(game1);
 		frame.setLocation(FRAME_LOCATION_X, FRAME_LOCATION_Y);
 		frame.add(view);
 	    frame.setSize(view.getSize());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//frame.setVisible(true);
+		frame.setVisible(true);
 	
 
 		//2 red 3 green 4gray 5pink
@@ -24,16 +25,16 @@ public class App {
 		Personage_fantome fontome4=new Personage_fantome(5);
 		//Bord bord =new Bord(pacman,fontome1,fontome2,fontome3,fontome4);
 	    	
-		Game game1=new Game();
+		
 			game1.addbloc();
 			game1.addPacgamme();
 			//game1.addPacMan();
 		
 	    	
-	    	game1.afficheBord();
+	    	//game1.afficheBord();
 	    	//System.out.print("hello");
 	    	
-	    	game1.movePacman(game1.getCell(5,0));
+	    //	game1.movePacman(game1.getCell(5,0));
 	    	//game1.afficheBord();
 	}
 	
