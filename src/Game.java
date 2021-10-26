@@ -1,7 +1,7 @@
 public class  Game {
 	
    private Bord[][] borde;
-   private static int numberPacgammes =5; //100 food 
+   private static int numberPacgammes =64; //100 food 
    private Bord bloc =new Bord(new Obstacle());
    //private Movement action;
    
@@ -28,32 +28,46 @@ public class  Game {
    
     /**view*/ 
     public void addbloc(){
-    	borde[1][1]=bloc;
-    	borde[4][1]=bloc;
-    	borde[6][1]=bloc;
-    	borde[2][2]=bloc;
-    	borde[4][2]=bloc;
-    	borde[2][3]=bloc;
-    	borde[4][3]=bloc;
-    	borde[6][3]=bloc;
-    	borde[7][3]=bloc;
-    	borde[9][3]=bloc;
     	borde[0][4]=bloc;
-    	borde[7][4]=bloc;
+    	borde[1][1]=bloc;
+    	borde[1][7]=bloc;
+    	borde[1][6]=bloc;
+    	borde[2][2]=bloc;
+    	borde[2][3]=bloc;
     	borde[3][5]=bloc;
+        //borde[3][8]=bloc;
+    	borde[4][1]=bloc;
+    	borde[4][2]=bloc;
+    	borde[4][7]=bloc;
+    	borde[4][3]=bloc;
     	borde[4][5]=bloc;
     	borde[5][5]=bloc;
-    	borde[1][6]=bloc;
+    	borde[6][1]=bloc;
+    	borde[6][3]=bloc;
+    	borde[7][3]=bloc;
+    	borde[7][4]=bloc;
     	borde[7][6]=bloc;
-    	borde[1][7]=bloc;
-    	borde[4][7]=bloc;
     	borde[7][7]=bloc;
+    	borde[9][3]=bloc;
     	borde[9][7]=bloc;
-    	borde[3][8]=bloc;
-    	borde[6][9]=bloc;
-    	borde[4][8]=bloc;
-    	borde[8][9]=bloc;
+    	//new
     	borde[2][9]=bloc;
+    	borde[6][4]=bloc;
+    	borde[2][1]=bloc;
+    	borde[2][7]=bloc;
+    	borde[3][7]=bloc;
+    	borde[4][8]=bloc;
+    	borde[4][0]=bloc;
+    	//borde[4][6]=bloc;
+    	borde[6][9]=bloc;
+    	borde[7][1]=bloc;
+    	borde[7][9]=bloc;
+    	borde[8][9]=bloc;
+    	borde[8][1]=bloc;
+    	
+    	
+    	
+    
     }
     public void addPacgamme(){
     	for(int i=0;i<borde.length;i++) {
@@ -74,71 +88,82 @@ public class  Game {
     			{
     			case PACMAN:
     				
-    				System.out.print(borde[i][j].getType());
-    				System.out.print(" ");
+    				//System.out.print(borde[i][j].getType());
+    				System.out.print(" PACMAN ");
     				break;
     			case PACGOMME:
     				
-    				System.out.print(borde[i][j].getMyPacgome().getPacgome());
-    				System.out.print(" ");
+    				System.out.print(borde[i][j].getMyPacgome().getPacgome()+" ");
+    				//System.out.print(" ");
 					break;
     			
     			case OBSTACLE:
     				
-    				System.out.print(borde[i][j].getType());
-    				System.out.print(" ");
+    				//System.out.print(borde[i][j].getType());
+    				System.out.print(" OBSTACLE ");
 					break;
     				
     			case EMPTY:
     				
-    				System.out.print(borde[i][j].getType());
-    				System.out.print(" ");
+    				//System.out.print(borde[i][j].getType());
+    				System.out.print(" EMPTY ");
 					break;
     			
     			}
     		} 		
     		
     		System.out.println();
-    	}  return true;
+    	} 
+    	System.out.println();
+    	return true;
     }
     
-    public void movePacman(int posX,int posY){
-    	Personage_pacman b=borde[posX][posY].getPacman();
-    	while(numberPacgammes>0) {
-		 
-    		if(posX>borde.length-1|| posX<0)return;
-    		if(posY>borde[0].length-1|| posY<0)return;	
-    		Bord current = getCell(posX,posY);		  
-    		Direction direction=Direction.UP;//getRandom();
+    public void movePacman(Bord b){
+    //	Personage_pacman b=borde[posX][posY].getPacman();
+    	Bord c = b;
+    	
+    		Bord current = b;		  
+    		
+    		Direction direction=getRandom();
     		switch(direction){
     		case RIGHT:
-    			moveRight(current);
+    	  	c=moveRight(current); 	
+    	  	current=c;
     			break;
     		case LEFT:
-    			moveLeft(current);
-    			break;
+    			c=moveLeft(current); 
+    			current=c;
+    			 //movePacman (b.getPosX(), b.getPosY());
+    			 break;
     		case DOWN:
-    			moveDown(current);
-    			break;
+    			 c=moveDown(current); 
+    			 current=c;
+    			// movePacman (b.getPosX(), b.getPosY());	  
+    			 break;
     		case UP:
-    		 b=	moveUp(current);
-    			break;		   
+    		 c=moveUp(current); 
+    		 current=c;
+    		// movePacman (b.getPosX(), b.getPosY());	 
+    		 break;
     		}
-    		movePacman( b.getPosX(), b.getPosY());
+    		while(numberPacgammes>0) 
+        	{
+    		movePacman (current);	
+    		
     	}		   
     }
 	   
-    private Personage_pacman moveUp(Bord b){
+    private Bord moveUp(Bord b){
 		   Personage_pacman pacman =b.getPacman();
 		   int posx=pacman.getPosX();
 		   int posy=pacman.getPosY();
 		   
 		   for(int j=posx-1;j>=0;j--){
 			   if((borde[j][posy]).getType()!=Element.OBSTACLE){
-				   if(borde[j][posy].getMyPacgome()!=null) {
-				   pacman.mangePacgomme(borde[j][posy].getMyPacgome());
-				   numberPacgammes--;
-				   }
+				   if(borde[j][posy].getType()==Element.PACGOMME) {
+					   pacman.mangePacgomme(borde[j][posy].getMyPacgome());
+					   numberPacgammes--;
+				   	}
 				   int v=j+1;
 				   setCellNull(v,posy);
 				   setCell(j,posy,pacman);
@@ -147,17 +172,17 @@ public class  Game {
 			   }else break;
 				  
 		   }
-		   return (pacman);
+		   return (getCell(pacman.getPosX(),pacman.getPosY()));
 	  
 }
     
-	   private void moveDown(Bord b){
+	   private Bord moveDown(Bord b){
 		   Personage_pacman pacman =b.getPacman();
 		   int posx=pacman.getPosX();
 		   int posy=pacman.getPosY();
 		   for(int j=posx+1;j<borde.length;j++){
 			   if((borde[j][posy]).getType()!=Element.OBSTACLE){
-				   if(borde[j][posy].getMyPacgome()!=null) {
+				   if(borde[j][posy].getType()==Element.PACGOMME) {
 				   pacman.mangePacgomme(borde[j][posy].getMyPacgome());
 				   numberPacgammes--;
 				   }
@@ -168,18 +193,18 @@ public class  Game {
 				   afficheBord();
 			   }else
 				   break;
-		   }
+		   } return (getCell(pacman.getPosX(),pacman.getPosY()));
 	   }
-	private void moveRight(Bord b){
+	private Bord moveRight(Bord b){
 		   Personage_pacman pacman =b.getPacman();
 		   int posx=pacman.getPosX();
 		   int posy=pacman.getPosY();
 		   
-		   for(int i=posy+1;i<borde.length-1;i++){
+		   for(int i=posy+1;i<borde.length;i++){
 			   if((borde[posx][i]).getType()!=Element.OBSTACLE){
-				   if(borde[posx][i].getMyPacgome()!=null) {
-				   pacman.mangePacgomme(borde[posx][i].getMyPacgome());
-				   numberPacgammes--;
+				   if(borde[posx][i].getType()==Element.PACGOMME) {
+					   pacman.mangePacgomme(borde[posx][i].getMyPacgome());
+					   numberPacgammes--;
 				   }
 				   int v=i-1;
 				   setCellNull(posx,v);	   
@@ -188,19 +213,19 @@ public class  Game {
 				   afficheBord();
 			   }else
 				   break;
-		   }
+		   } return (getCell(pacman.getPosX(),pacman.getPosY()));
 	   }
     
-    private void moveLeft(Bord b){
+    private Bord moveLeft(Bord b){
 		   Personage_pacman pacman =b.getPacman();
 		   int posx=pacman.getPosX();
 		   int posy=pacman.getPosY();
 		 
 		   for(int i=posy-1;i>=0;i--){
 			   if((borde[posx][i]).getType()!=Element.OBSTACLE){
-				   if(borde[posx][i].getMyPacgome()!=null) {
-				   pacman.mangePacgomme(borde[posx][i].getMyPacgome());
-				   numberPacgammes--;
+				   if(borde[posx][i].getType()==Element.PACGOMME) {
+				      pacman.mangePacgomme(borde[posx][i].getMyPacgome());
+				      numberPacgammes--;
 				   }
 				   int v=i+1;
 				   setCellNull(posx,v);
@@ -209,7 +234,7 @@ public class  Game {
 				  afficheBord();
 			   }else 
 				   break;
-		   }
+		   }return (getCell(pacman.getPosX(),pacman.getPosY()));
 	   
     }
     
