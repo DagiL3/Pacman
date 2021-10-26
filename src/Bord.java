@@ -1,7 +1,15 @@
 public  class Bord {
 	 private Element type;
-	 private Personage_pacman pacman;
+	 
+	 public void setType(Element type) {
+		this.type = type;
+	}
+
+	private Personage_pacman pacman;
 	 private Personage_fantome fantom1;
+	 private Personage_fantome fantom2;
+	 private Personage_fantome fantom3;
+	 private Personage_fantome fantom4;
 	 private MyPacgomme pacgome;
 	 private Obstacle obstacle;
 	  
@@ -24,11 +32,15 @@ public  class Bord {
 	     this.type=(Element)obstacle.getType();
 		 }
 	
-	 public Bord(Personage_pacman pacman,Personage_fantome fantom1,MyPacgomme pacgome,Obstacle obstacle){
+	 public Bord(Personage_pacman pacman,Personage_fantome fantom1,Personage_fantome fantom2,Personage_fantome fantom3,
+			 Personage_fantome fantom4){//MyPacgomme pacgome,Obstacle obstacle
 		 this.fantom1=fantom1;
-		 this.pacgome=pacgome;
+		 this.fantom2=fantom2;
+		 this.fantom3=fantom3;
+		 this.fantom4=fantom4;
+		 //this.pacgome=pacgome;
 		 this.pacman=pacman;
-		 this.obstacle=obstacle;
+		 //this.obstacle=obstacle;
 	 }
 	
 	 public Personage_pacman getPacman() {

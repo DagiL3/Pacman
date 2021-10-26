@@ -8,8 +8,8 @@ public class Personage_fantome {
 	public Personage_fantome(int color) {
 		this.color=color;
 		this.type=Element.FANTOME;
-		this.posY=0;
-		this.posX=0;
+		this.posY=13;
+		this.posX=13;
 		
 	}
 	public int getPosX() {

@@ -8,13 +8,13 @@ public class Personage_pacman  {
 	private int posX;
 	private int posY;
 	
-	public Personage_pacman(){
+	public Personage_pacman( int posX,int posY){
 		this.vie=3;
 		this.color=1;//yellow
 		this.point=0;
 		this.type=Element.PACMAN;
-		this.posX=0;
-		this.posY=0;
+		this.posX=posX;
+		this.posY= posY;
 	}
 	
 	public void mangePacgomme(MyPacgomme g){
