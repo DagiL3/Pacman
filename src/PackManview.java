@@ -26,19 +26,16 @@ public class PackManview extends JPanel implements ActionListener {
 		this.game=game;
 		setOpaque(true);
 		setSize(WIDTH,HEIGHT);
-		timer=new Timer(200,this); 
-		timer.start();
-		
+		timer=new Timer(40,this); 
+		timer.start();		
 	}
-	
+
 	@Override
 	public void paint(Graphics g){
 		super.paint(g);
 		Graphics2D g2d=(Graphics2D) g;
-		g2d.setBackground(Color.BLUE);
-		
-			drawRectangle(g2d);
-		
+		g2d.setBackground(Color.BLUE);		
+			drawRectangle(g2d);		
 	}
 	
 	private void drawRectangle(Graphics2D g2d )  {
@@ -62,12 +59,16 @@ public class PackManview extends JPanel implements ActionListener {
 					g2d.fillOval(i*100+30, j*65+10, 40, 40);
 					
 							//g2d.drawOval(););
+				}
+				else if(game.getBorde()[i][j].getType()==Element.FANTOME) {
+					g2d.setColor(Color.RED);
+					g2d.fillOval(i*100+30, j*65+10, 40, 40);
+							//g2d.drawOval(););
 				}else {
 					g2d.setColor(Color.gray);
 					g2d.fill(new Rectangle2D.Double(i*100,j*65,width,hight));
 				}
 			}
-			
 		}
 	}	  
 	
@@ -80,12 +81,10 @@ public class PackManview extends JPanel implements ActionListener {
 	    		case RIGHT:
 						c=moveRight(current);
 	    	  	current=c;
-	    	    //repaint();
+	    	  
 	    			break;
-	    		case LEFT:
-	    			
-						c=moveLeft(current);
-					
+	    		case LEFT:			
+						c=moveLeft(current);					
 	    			current=c;
 	    		 // repaint();
 	    			 break;
@@ -98,7 +97,7 @@ public class PackManview extends JPanel implements ActionListener {
 						c=moveUp(current);
 					
 	    		 current=c;
-	    		//	repaint(); 
+	    			//repaint(); 
 	    		 break;
 	    		}	    				    
 	    }
@@ -110,12 +109,12 @@ public class PackManview extends JPanel implements ActionListener {
     		  movePacman (game.getCell(5,0));
     		  repaint(); 
     	    }*/
-			  movePacman (game.getCell(5,0));		
-			 // repaint(); 
+			 // movePacman (game.getCell(5,0));	
+			  moveUpFantom(game.getCell(9,9));
+			  repaint(); 
 		}
-					   
-		public Bord moveUp(Bord b) {
-			
+					
+		public Bord moveUp(Bord b) {		
 			   Personage_pacman pacman =b.getPacman();
 			   int posx=pacman.getPosX();
 			   int posy=pacman.getPosY();			   
@@ -132,13 +131,40 @@ public class PackManview extends JPanel implements ActionListener {
 					   pacman.setPosX(j);
 					   game.afficheBord();
 				   }else break;
-				   repaint(); 
+				   try {
+					Thread.sleep(100);
+					//repaint();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			   }
 			   return (game.getCell(pacman.getPosX(),pacman.getPosY()));		  
 	}
-	    
-		public Bord moveDown(Bord b){
-			
+		public Bord moveUpFantom(Bord b) {		
+			   Personage_fantome fantom =b.getFantom1();
+			   int posx=fantom.getPosX();
+			   int posy=fantom.getPosY();			   
+			   for(int j=posx-1;j>=0;j--){
+				   if (game.getNumberPacgammes()<=0)break;
+				   if((game.borde[j][posy]).getType()!=Element.OBSTACLE){
+					  System.out.print("je suis dans le boucle");
+					   int v=j+1;
+					   game.setCellNullF(v,posy);
+					   game.setCellF(j,posy,fantom);
+					   fantom.setPosX(j);
+					   game.afficheBord();
+				   }else break;
+				   try {
+					Thread.sleep(100);
+					//repaint();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			   }
+			   return (game.getCell(fantom.getPosX(),fantom.getPosY()));		  
+	}
+		
+		public Bord moveDown(Bord b){			
 			   Personage_pacman pacman =b.getPacman();
 			   int posx=pacman.getPosX();
 			   int posy=pacman.getPosY();
@@ -156,11 +182,15 @@ public class PackManview extends JPanel implements ActionListener {
 					   game.afficheBord();
 				   }else
 					   break;
-				 repaint(); 
-			   } 
+				  
+					//repaint(); 
+					
+				
+				}
+			   
 			   return (game.getCell(pacman.getPosX(),pacman.getPosY()));
 		   }
-		public Bord moveRight(Bord b) {
+		public Bord moveRight(Bord b){
 			
 			   Personage_pacman pacman =b.getPacman();
 			   int posx=pacman.getPosX();
@@ -180,16 +210,21 @@ public class PackManview extends JPanel implements ActionListener {
 					 game.afficheBord();
 				   }else
 					   break;
-				   repaint(); 
-			   } return (game.getCell(pacman.getPosX(),pacman.getPosY()));
+				   try {
+					Thread.sleep(100);
+					repaint(); 					  
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			   } 
+			   return (game.getCell(pacman.getPosX(),pacman.getPosY()));
 		   }
 	    
-		public   Bord moveLeft(Bord b){
-		
+		public  Bord moveLeft(Bord b){		          
 			   Personage_pacman pacman =b.getPacman();
 			   int posx=pacman.getPosX();
-			   int posy=pacman.getPosY();
-			 
+			   int posy=pacman.getPosY();			 
 			   for(int i=posy-1;i>=0;i--){
 				   if (game.getNumberPacgammes()==0)break;
 				   if((game.borde[posx][i]).getType()!=Element.OBSTACLE){
@@ -204,10 +239,15 @@ public class PackManview extends JPanel implements ActionListener {
 					  game.afficheBord();
 				   }else 
 					   break;
-				 repaint(); 
+				   try {
+					Thread.sleep(1000);
+					repaint(); 					   
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				  
 			   }
 			   return (game.getCell(pacman.getPosX(),pacman.getPosY()));
-		   
 	    }
 	}
 

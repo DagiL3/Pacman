@@ -5,12 +5,11 @@ public class Personage_fantome {
 	private int posX;
 	private int posY;
      
-	public Personage_fantome(int color) {
-		this.color=color;
+	public Personage_fantome(int posX,int posY) {
+		//this.color=color;
 		this.type=Element.FANTOME;
-		this.posY=13;
-		this.posX=13;
-		
+		this.posX=posX;
+		this.posY=posY;
 	}
 	public int getPosX() {
 		return posX;
@@ -31,8 +30,4 @@ public class Personage_fantome {
 	public void setType(Element type) {
 		this.type = type;
 	}
-
-	
-	
-	
 }

@@ -19,10 +19,19 @@ public class  Game {
    public void setCellNull(int posX,int posY){
 	   borde[posX][posY].setType(Element.EMPTY);
    }
-   
+ 
    public void setCell(int posX,int posY,Personage_pacman pacman){
 	   borde[posX][posY].setType((Element) pacman.getType());
 	   borde[posX][posY].setPacman(pacman);
+   }
+   public void  setCellNullF(int posX,int posY){
+	  
+	   borde[posX][posY].setType(Element.EMPTY);
+   } 
+  
+   public void setCellF(int posX,int posY,Personage_fantome fantome){
+	   borde[posX][posY].setType((Element) fantome.getType());
+	   borde[posX][posY].setFantom1(fantome);
    }
    
    /*To get Random value of enum */
@@ -68,23 +77,26 @@ public class  Game {
     	borde[7][9]=bloc;
     	borde[8][9]=bloc;
     	borde[8][1]=bloc;
-    	
-    	
-    	
-    
     }
+    
     public void addPacgamme(){
     	for(int i=0;i<borde.length;i++) {
     		for(int j=0;j<borde[i].length;j++) {
-    			if(i==5 && j==0) {borde[i][j]=new Bord(new Personage_pacman(i,j));}
+    			if(i==0 && j==0) {borde[i][j]=new Bord(new Personage_fantome(i,j));}
+    			else if(i==9 && j==9) {borde[i][j]=new Bord(new Personage_fantome(i,j));
+    			}
+    			else if(i==5 && j==0) {borde[i][j]=new Bord(new Personage_pacman(i,j));
+    			}
+    			else if(i==5 && j==0) {borde[i][j]=new Bord(new Personage_pacman(i,j));
+    			}
     			else if(borde[i][j]==null) {
     				borde[i][j]=new Bord(new MyPacgomme(Pacgomme.BLEU));
     				numberPacgammes++;
+    			}	
     			}
-    				
-    			}
-    	   }
+    		}
     }
+    
     
     public Boolean afficheBord(){
     	for(int i=0;i<borde.length;i++) {
@@ -102,10 +114,16 @@ public class  Game {
     			case OBSTACLE:			
     				//System.out.print(borde[i][j].getType());
     				System.out.print(" OBSTACLE ");
-					break;  				
+					break;  	
     			case EMPTY:    				
     				//System.out.print(borde[i][j].getType());
     				System.out.print(" EMPTY ");
+					break;
+    			
+
+    			case FANTOME:    				
+    				//System.out.print(borde[i][j].getType());
+    				System.out.print(" FANTOME ");
 					break;
     			
     			}
