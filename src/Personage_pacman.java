@@ -20,7 +20,7 @@ public class Personage_pacman  {
 	public void mangePacgomme(MyPacgomme g){
 		addPoints(g);
 		g.setPacgomme();
-		//no_pacgomme --;
+		
 	}
 	
 	 private void addPoints(MyPacgomme p){

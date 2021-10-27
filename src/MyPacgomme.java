@@ -6,7 +6,7 @@ enum Pacgomme {
 		private Pacgomme  pacgom;
 		private Element type;
 		
-		public  MyPacgomme(Pacgomme pacgom){
+		public MyPacgomme(Pacgomme pacgom){
 			this.pacgom=pacgom;
 			this.type=Element.PACGOMME;
 		}

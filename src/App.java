@@ -17,25 +17,24 @@ public class App {
 		frame.setVisible(true);
 	
 
-		//2 red 3 green 4gray 5pink
+		/*//2 red 3 green 4gray 5pink
 		//Personage_pacman pacman=new Personage_pacman(5,4);
 		Personage_fantome fontome1=new Personage_fantome(2);
 		Personage_fantome fontome2=new Personage_fantome(3);
 		Personage_fantome fontome3=new Personage_fantome(4);
 		Personage_fantome fontome4=new Personage_fantome(5);
 		//Bord bord =new Bord(pacman,fontome1,fontome2,fontome3,fontome4);
-	    	
+	    	*/
 		
-			game1.addbloc();
-			game1.addPacgamme();
+			
 			//game1.addPacMan();
 		
 	    	
 	    	//game1.afficheBord();
 	    	//System.out.print("hello");
-	    	
-	    //	game1.movePacman(game1.getCell(5,0));
-	    	//game1.afficheBord();
+		//view.movePacman(game1.getCell(5,0));
+	  	//view.movePacman(game1.getCell(5,0));
+	    //game1.afficheBord();
 	}
 	
 }

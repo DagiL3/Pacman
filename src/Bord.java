@@ -22,11 +22,12 @@ public  class Bord {
 		 this.fantom1=fantom1;
 		 this.type=(Element) fantom1.getType();
 	 }
+	 
 	 public Bord(MyPacgomme pacgome){
      this.pacgome=pacgome;
-     this.type=(Element)pacgome.getType();
-		
+     this.type=(Element)pacgome.getType();	
 	 }
+	 
 	 public Bord(Obstacle obstacle){
 	     this.obstacle=obstacle;	
 	     this.type=(Element)obstacle.getType();
