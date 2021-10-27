@@ -33,7 +33,7 @@ public class App {
 	    	//game1.afficheBord();
 	    	//System.out.print("hello");
 		//view.movePacman(game1.getCell(5,0));
-	  	//view.movePacman(game1.getCell(5,0));
+	  //	view.moveUpFantom(game1.getCell(9,9));
 	    //game1.afficheBord();
 	}
 	

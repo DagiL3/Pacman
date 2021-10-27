@@ -82,13 +82,12 @@ public class  Game {
     public void addPacgamme(){
     	for(int i=0;i<borde.length;i++) {
     		for(int j=0;j<borde[i].length;j++) {
-    			if(i==0 && j==0) {borde[i][j]=new Bord(new Personage_fantome(i,j));}
+    			if(i==3 && j==3) {borde[i][j]=new Bord(new Personage_fantome(i,j));}
     			else if(i==9 && j==9) {borde[i][j]=new Bord(new Personage_fantome(i,j));
     			}
     			else if(i==5 && j==0) {borde[i][j]=new Bord(new Personage_pacman(i,j));
     			}
-    			else if(i==5 && j==0) {borde[i][j]=new Bord(new Personage_pacman(i,j));
-    			}
+    			
     			else if(borde[i][j]==null) {
     				borde[i][j]=new Bord(new MyPacgomme(Pacgomme.BLEU));
     				numberPacgammes++;

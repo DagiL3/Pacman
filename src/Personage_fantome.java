@@ -11,6 +11,18 @@ public class Personage_fantome {
 		this.posX=posX;
 		this.posY=posY;
 	}
+	
+	public void mangePacgomme(MyPacgomme g){
+		//addPoints(g);
+		g.setPacgomme();
+		
+	}
+	
+	
+	
+	
+	
+	
 	public int getPosX() {
 		return posX;
 	}
