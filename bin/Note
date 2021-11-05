@@ -1,0 +1,221 @@
+/**
+		 * Fontem movement
+		 */
+		public Bord moveRightF(Bord b){	//moveDown		
+			 fantome =b.getFantom1();
+			   int posx=fantome.getPosX();
+			   int posy=fantome.getPosY();	
+			   for(int j=posx+1;j<game.borde.length;j++){
+			   /*int j=posx+1;
+			  if( j>=game.borde.length)return null;*/
+				   if (game.getNumberPacgammes()==0)break;
+				   if((game.borde[j][posy]).getType()!=Element.OBSTACLE ){
+					  if( (game.borde[j][posy]).getType()==Element.FANTOME)
+						{
+						  break;
+						  	//Personage_fantome rec_avanve=game.borde[j][posy].getFantom1();
+							//game.setCellNullFantome(j-1,posy,rec_avanve);
+						}else {
+							Bord rec_avanve=game.borde[j][posy]; 
+							game.setCellNullF(j-1,posy,rec_avanve);
+						}
+							game.setCellF(j,posy,fantome);
+							fantome.setPosX(j);
+							// game.afficheBord();
+				   }else
+					   break;
+				 /*  try {
+						Thread.sleep(sleep);
+										   
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}*/
+				  // repaint(); 	
+				}			   
+			   return (game.getCell(fantome.getPosX(),fantome.getPosY()));
+		   }
+		
+		public Bord moveLeftF(Bord b){	//moveDown		
+			 fantome =b.getFantom1();
+			   int posx=fantome.getPosX();
+			   int posy=fantome.getPosY();	
+			  for(int j=posx-1;j>=0;j--){
+			  /* int j=posx-1;
+			   if(j<0)return null;
+			 */
+				   if (game.getNumberPacgammes()==0)break;
+				   if((game.borde[j][posy]).getType()!=Element.OBSTACLE /*&& (game.borde[posx][j]).getType()!=Element.FANTOME*/){
+					   //  int v=j+1;
+					  // if(v<game.borde.length-1){
+						   //Element rec=game.borde[v+1][posy].getType();
+						 //  Element rec_anvance=game.borde[j][posy].getType();
+						   //game.setCellNullF(j+1,posy,rec_anvance); 
+					 
+						   if( (game.borde[j][posy]).getType()==Element.FANTOME)
+							{
+							   break;
+							    //Personage_fantome rec_avance=game.borde[j][posy].getFantom1();
+								 //game.setCellNullFantome(j+1,posy,rec_avance);
+								// rec_avance.setPosX(j+1);
+								
+							}else {
+								Bord rec_anvance=game.borde[j][posy]; 
+								game.setCellNullF(j+1,posy,rec_anvance); 
+								     /*if(rec_anvance==Element.PACGOMME) {
+									//(game.borde[j][posy].getMyPacgome()).setPosX(j);*/
+									
+								}//else if(rec_anvance==Element.PACMAN) {
+									//game.borde[j][posy].getPacman().setVie();
+								  //game.borde[j][posy].getPacman();
+									//.setPosY(j+1)
+									
+									
+								//}
+								
+								 
+							//}
+					  /* }
+						 else{
+						   game.setCellNullF(v,posy,game.borde[j][posy].getType());
+					    }*/
+					   game.setCellF(j,posy,fantome);
+					   fantome.setPosX(j);
+					   //game.afficheBord();
+							
+				   }else
+					   break;
+				  
+				 /*  try {
+						Thread.sleep(sleep);
+										   
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}*/
+				 //  repaint(); 	
+			}			   
+			   return (game.getCell(fantome.getPosX(),fantome.getPosY()));
+		   }
+			public  Bord moveDownF(Bord b){		          
+			    fantome =b.getFantom1();
+			   int posx=fantome.getPosX();
+			   int posy=fantome.getPosY();			 
+			  for(int i=posy+1;i<game.borde.length;i++){
+			  /* int i=posy+1;
+			   if(i>=game.borde.length)return null;*/
+			  
+				   if (game.getNumberPacgammes()==0)break;
+				   if((game.borde[posx][i]).getType()!=Element.OBSTACLE ){
+						   //Element rec=game.borde[posx][v-1].getType();
+					   
+					   
+					   if( (game.borde[posx][i]).getType()==Element.FANTOME)
+						{
+						   break;
+						  /*  Personage_fantome rec_avance=game.borde[posx][i].getFantom1();
+							 game.setCellNullFantome(posx,i-1,rec_avance);*/
+					   
+						}else { 
+						   Bord rec_avence=game.borde[posx][i];
+						   game.setCellNullF(posx,i-1,rec_avence);
+						}
+					   /*}else{
+						   game.setCellNullF(posx,v,game.borde[posx+1][i].getType());
+					   }*/
+					   
+					   game.setCellF(posx,i,fantome);
+					   fantome.setPosY(i);
+					//  game.afficheBord();
+				   }else 
+					   break;
+				 /*  try {
+					Thread.sleep(sleep);
+									   
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} */
+				  // repaint(); 	
+			   }
+			   return (game.getCell(fantome.getPosX(),fantome.getPosY()));
+	    }
+		
+		public  Bord moveUpF(Bord b){		          
+			    fantome =b.getFantom1();
+			   int posx=fantome.getPosX();
+			   int posy=fantome.getPosY();			 
+			   for(int i=posy-1;i>=0;i--){
+			 /*  int i=posy-1;
+			   if(i<0)return null;
+			 */
+				   if (game.getNumberPacgammes()==0) System.out.print("game Over");;
+				   if((game.borde[posx][i]).getType()!=Element.OBSTACLE ){   
+				     // Element rec=game.borde[posx][v+1].getType();
+					   
+					   if( (game.borde[posx][i]).getType()==Element.FANTOME)
+						{
+						   break;
+						  /*  Personage_fantome rec_avance=game.borde[posx][i].getFantom1();
+							 game.setCellNullFantome(posx,i+1,rec_avance);
+					   */
+						}else { 
+			           Bord rec_avence=game.borde[posx][i];
+					   game.setCellNullF(posx,i+1,rec_avence);	
+						}
+				 //game.setCellNullF(posx,v,game.borde[posx+1][i].getType());
+					  // */}*/
+					   game.setCellF(posx,i,fantome);
+					   fantome.setPosY(i);
+					//  game.afficheBord();
+				   }else {
+					   break;
+					   } 
+					   
+				 /*  try {
+					Thread.sleep(sleep);
+									   
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}*/
+				   //repaint(); 	
+			   }
+			   return (game.getCell(fantome.getPosX(),fantome.getPosY()));
+	    }
+		
+		  public void moveFantome() {
+			  int x=fantome.getPosX();
+			  int y=fantome.getPosX();
+			 Bord b= game.getCell(x,y);
+			  
+			//  if(gameStatus()==false)return;
+			  if(pacman.getVie()<=0)return;
+			  if(game.getNumberPacgammes()<=0)return;
+		    	Bord c = b;
+		    		Bord current = b;		  
+		    		Direction direction=game.getRandom();/*Direction.LEFT;*/
+		    		
+		    		switch(direction){
+		    		case RIGHT:
+							c=moveRightF(current);
+		    	  	current=c;
+		    	  	// repaint(); 
+		    			break;
+		    		case LEFT:			
+							c=moveLeftF(current);					
+		    			current=c;
+		    		 //repaint();
+		    			 break;
+		    		case DOWN:	    
+		    		//	c=moveLeftF(current);		
+						c=moveDownF(current);				 
+		    			 current=c;
+		    			//	repaint();
+		    			 break;
+		    		case UP:					
+							c=moveUpF(current);
+						
+		    		 current=c;
+		    			//repaint(); 
+		    		 break;
+		    		}	
+		    		
+		    }
+		

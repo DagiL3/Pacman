@@ -1,18 +1,15 @@
 public  class Bord {
 	 private Element type;
-	 
-	 public void setType(Element type) {
-		this.type = type;
-	}
-
-	private Personage_pacman pacman;
+	 private Personage_pacman pacman;
 	 private Personage_fantome fantom1;
-	 private Personage_fantome fantom2;
+	/* private Personage_fantome fantom2;
 	 private Personage_fantome fantom3;
 	 private Personage_fantome fantom4;
+	 */
 	 private MyPacgomme pacgome;
 	 private Obstacle obstacle;
-	  
+	 
+	
 	 public Bord(Personage_pacman pacman){
 		 this.pacman=pacman;  
 		 this.type=(Element) pacman.getType();
@@ -33,7 +30,7 @@ public  class Bord {
 	     this.type=(Element)obstacle.getType();
 		 }
 	
-	 public Bord(Personage_pacman pacman,Personage_fantome fantom1,Personage_fantome fantom2,Personage_fantome fantom3,
+/*	 public Bord(Personage_pacman pacman,Personage_fantome fantom1,Personage_fantome fantom2,Personage_fantome fantom3,
 			 Personage_fantome fantom4){//MyPacgomme pacgome,Obstacle obstacle
 		 this.fantom1=fantom1;
 		 this.fantom2=fantom2;
@@ -43,7 +40,7 @@ public  class Bord {
 		 this.pacman=pacman;
 		 //this.obstacle=obstacle;
 	 }
-	
+	*/
 	 public Personage_pacman getPacman() {
 		return pacman;
 	}
@@ -75,6 +72,12 @@ public  class Bord {
 	public Element getType() {
 		return type;
 	}
+	 public void setType(Element type) {
+			this.type = type;
+		}
+	
+
+	
 
 	
 

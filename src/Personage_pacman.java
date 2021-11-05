@@ -18,12 +18,15 @@ public class Personage_pacman  {
 	}
 	
 	public void mangePacgomme(MyPacgomme g){
+		if(g==null)return;
 		addPoints(g);
 		g.setPacgomme();
 		
 	}
 	
 	 private void addPoints(MyPacgomme p){
+		if(p==null)return;
+		if(p.getPacgome()==null)return;
 		 switch(p.getPacgome()){
 		 
 		 case BLEU:
@@ -46,8 +49,8 @@ public class Personage_pacman  {
 			return vie;
 		}
 
-		public void setVie(int vie) {
-			this.vie = vie;
+		public void setVie() {
+			this.vie--;
 		}
 
 		public int getColor() {

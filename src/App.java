@@ -10,6 +10,12 @@ public class App {
 		JFrame frame=new JFrame("Pac man");
 		Game game1=new Game();
 		PackManview view =new PackManview(game1);
+
+	//	game1.moveFantome();
+		/*view.moveFantome(game1.getCell(5, 5));
+		view.moveFantome(game1.getCell(9, 0));
+		view.moveFantome (game1.getCell(9,8));*/
+		
 		frame.setLocation(FRAME_LOCATION_X, FRAME_LOCATION_Y);
 		frame.add(view);
 	    frame.setSize(view.getSize());
@@ -29,12 +35,14 @@ public class App {
 			
 			//game1.addPacMan();
 		
-	    	
+		
 	    	//game1.afficheBord();
 	    	//System.out.print("hello");
 		//view.movePacman(game1.getCell(5,0));
 	  //	view.moveUpFantom(game1.getCell(9,9));
 	    //game1.afficheBord();
+		
+		
 	}
 	
 }
