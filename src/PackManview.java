@@ -49,7 +49,7 @@ public class PackManview extends JPanel implements ActionListener {
 	public void movement(){
 		// if(game.getNumberPacgammes()<=0)return;
 			 game.moveFantome();
-		 
+		     game.movePacman();
 	}
 		
 	private void drawRectangle(Graphics2D g2d )  {
@@ -97,194 +97,19 @@ public class PackManview extends JPanel implements ActionListener {
 		}
 	}	  
 	
-	    public void movePacman(Bord b) {
-	  	//if(gameStatus()==false)return;
-	    	 if(game.getNumberPacgammes()<=0)return;
-	    	Bord c = b;
-	    		Bord current = b;		  
-	    		Direction direction=game.getRandom();
-	    		
-	    		switch(direction){
-	    		case RIGHT:
-						c=moveRight(current);
-	    	  	current=c;
-	    	  
-	    			break;
-	    		case LEFT:			
-						c=moveLeft(current);					
-	    			current=c;
-	    		 // repaint();
-	    			 break;
-	    		case DOWN:	    			
-						c=moveDown(current);				 
-	    			 current=c;
-	    				//repaint();
-	    			 break;
-	    		case UP:					
-						c=moveUp(current);
-					
-	    		 current=c;
-	    			//repaint(); 
-	    		 break;
-	    		}	    				    
-	    }
+
 
 	    
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			//movement();
-			   //movePacman (game.getCell(5,0));
-			// repaint(); 
-					 //repaint();    
-			   //moveFantome(game.getCell(0, 9));
-			  // moveFantome(game.getCell(5, 5));
-			  // moveFantome(game.getCell(9, 0));
+			
 			    repaint();
-			//	
-				//moveFantome (game.getCell(9,8));
-				//moveFantome (game.getCell(9,8));
 			
 		
 			
 		}
 		
-		
-					
-		public Bord moveLeft(Bord b) {	//moveUp	
-			    pacman =b.getPacman();
-			    if(pacman.getVie()<=0||game.getNumberPacgammes()<=0) {
-			    	System.out.print("game Over");
-			    }
-			   int posx=pacman.getPosX();
-			   int posy=pacman.getPosY();			   
-			   for(int j=posx-1;j>=0;j--){
-				   if (game.getNumberPacgammes()<=0)break;
-				   if((game.borde[j][posy]).getType()!=Element.OBSTACLE){
-					   if(game.borde[j][posy].getType()==Element.PACGOMME) {
-						   pacman.mangePacgomme(game.borde[j][posy].getMyPacgome());
-						  game.setNumberPacgammes();
-					   	}else if(game.borde[j][posy].getType()==Element.FANTOME){
-					   		pacman.setVie();
-					   		break;
-					   	} 
-					   int v=j+1;
-					   game.setCellNull(v,posy,game.borde[j][posy]);
-					   game.setCell(j,posy,pacman);
-					   pacman.setPosX(j);
-					  // game.afficheBord();
-				   }else break;
-			/*	   try {
-					Thread.sleep(100);
-				 	repaint();
-				   } catch (InterruptedException e) {
-					e.printStackTrace();
-				}*/
-	}
-			  
-			   return (game.getCell(pacman.getPosX(),pacman.getPosY()));		  
-	}
-		
-		public Bord moveRight(Bord b){	//moveDown	
-			  pacman =b.getPacman();
-			  if(pacman.getVie()<=0||game.getNumberPacgammes()<=0)System.out.print("game Over");
-			   int posx=pacman.getPosX();
-			   int posy=pacman.getPosY();
-			   for(int j=posx+1;j<game.borde.length;j++){
-				   if (game.getNumberPacgammes()==0)break;
-				   if((game.borde[j][posy]).getType()!=Element.OBSTACLE){
-					   if(game.borde[j][posy].getType()==Element.PACGOMME) {
-					   pacman.mangePacgomme(game.borde[j][posy].getMyPacgome());
-					   game.setNumberPacgammes();
-					   }
-				   	else if(game.borde[j][posy].getType()==Element.FANTOME){
-				   		pacman.setVie();
-				   		break;
-				    	}
-					   int v=j-1;
-					   game.setCellNull(v,posy,game.borde[j][posy]);
-					   game.setCell(j,posy,pacman);
-					   pacman.setPosX(j);
-					 //  game.afficheBord();
-				   }else
-					   break;
-				  
-				/*   try {
-						Thread.sleep(100);
-						repaint(); 					   
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}*/
-				}			   
-			   return (game.getCell(pacman.getPosX(),pacman.getPosY()));
-		   }
-		
-		public Bord moveDown(Bord b){//moveRight
-			
-			   pacman =b.getPacman();
-			   if(pacman.getVie()<=0||game.getNumberPacgammes()<=0)System.out.print("game Over");
-			   int posx=pacman.getPosX();
-			   int posy=pacman.getPosY();
-			   
-			   for(int i=posy+1;i<game.borde.length;i++){
-				   if (game.getNumberPacgammes()==0)break;
-				   if((game.borde[posx][i]).getType()!=Element.OBSTACLE){
-					   if(game.borde[posx][i].getType()==Element.PACGOMME) {
-						   pacman.mangePacgomme(game.borde[posx][i].getMyPacgome());
-						   game.setNumberPacgammes();
-					   }else if(game.borde[posx][i].getType()==Element.FANTOME){
-					   		pacman.setVie();
-					   		break;
-					    	}
-					  // int v=i-1;
-					   game.setCellNull(posx,i-1,game.borde[posx][i]);	   
-					   game.setCell(posx,i,pacman);
-					   pacman.setPosY(i);
-					//game.afficheBord();
-				   }else
-					   break;
-				   /*try {
-					//Thread.sleep(100);
-					//repaint(); 					  
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} */
-			   } 
-			   return (game.getCell(pacman.getPosX(),pacman.getPosY()));
-		   }
-	    
-		public  Bord moveUp(Bord b){	//	 moveLeft         
-			    pacman =b.getPacman();
-			    if(pacman.getVie()<=0||game.getNumberPacgammes()<=0)System.out.print("game Over");;
-			   int posx=pacman.getPosX();
-			   int posy=pacman.getPosY();			 
-			   for(int i=posy-1;i>=0;i--){
-				   if (game.getNumberPacgammes()==0)break;
-				   if((game.borde[posx][i]).getType()!=Element.OBSTACLE){
-					   if(game.borde[posx][i].getType()==Element.PACGOMME) {
-					      pacman.mangePacgomme(game.borde[posx][i].getMyPacgome());
-					      game.setNumberPacgammes();		  
-					      //game.afficheBord();
-				        }else if(game.borde[posx][i].getType()==Element.FANTOME){
-					   		pacman.setVie();
-					   		break;
-					    	}
-					     game.setCellNull(posx,i+1,game.borde[posx][i]);
-					     game.setCell(posx,i,pacman);
-					     pacman.setPosY(i);
-				   } else 
-					   break;
-				/*   try {
-					Thread.sleep(100);
-					repaint(); 					   
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}*/
-				  
-			   }
-			   return (game.getCell(pacman.getPosX(),pacman.getPosY()));
-	    }
 		
 		
 		
