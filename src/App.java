@@ -20,8 +20,9 @@ public class App {
 		frame.add(view);
 	    frame.setSize(view.getSize());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		   
 		frame.setVisible(true);
-	
+		//view.MovementNull();
 
 		/*//2 red 3 green 4gray 5pink
 		//Personage_pacman pacman=new Personage_pacman(5,4);
@@ -41,8 +42,7 @@ public class App {
 		//view.movePacman(game1.getCell(5,0));
 	  //	view.moveUpFantom(game1.getCell(9,9));
 	    //game1.afficheBord();
-		
-		
+
 	}
 	
 }

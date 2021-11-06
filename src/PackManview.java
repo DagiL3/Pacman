@@ -10,6 +10,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -21,8 +22,8 @@ public class PackManview extends JPanel implements ActionListener {
 	private int currentSpeed = 3;
 	private Timer timer;
 	private long sleep=40;
-	private Personage_pacman pacman;
-	Personage_fantome fantome;
+	//private Personage_pacman pacman=getCell();
+	//Personage_fantome fantome;
 	Bord bord;
 	
 	public PackManview(Game game){
@@ -43,15 +44,32 @@ public class PackManview extends JPanel implements ActionListener {
 			drawRectangle(g2d);		
 			//movePacman (game.getCell(5,0));
 			//moveFantome(game.getCell(0, 9));
-			movement();
+				 
+				  if(game.getNumberPacgammes()<=0||game.getPacman().getVie()<=0){
+					 // game.afficheStatus(); 
+					return;
+				  }else {
+					  movement();
+				  }
 	}
-
+			
+	
 	public void movement(){
-		// if(game.getNumberPacgammes()<=0)return;
+		 if(game.getNumberPacgammes()<=0||game.getPacman().getVie()<=0){
+			 return;
+		 }
+	        //game.afficheStatus();
+	    	//System.out.print("game Over");
 			 game.moveFantome();
 		     game.movePacman();
+	
 	}
-		
+	
+	public void MovementNull()
+	{
+		  game.afficheStatus();
+	}	
+	
 	private void drawRectangle(Graphics2D g2d )  {
 		int width=100;
 		int hight=70;
@@ -64,8 +82,21 @@ public class PackManview extends JPanel implements ActionListener {
 					g2d.fill(new Rectangle2D.Double(i*100,j*65,width,hight));
 					 
 				}else if(game.getBorde()[i][j].getType()==Element.PACGOMME) {
-					g2d.setColor(Color.BLUE);
-					g2d.fillOval(i*100+30, j*65+10, 12, 12);
+					
+					  if(game.getBorde()[i][j].getMyPacgome().getPacgome()==Pacgomme.BLEU) {
+					  g2d.setColor(Color.BLUE);
+					  g2d.fillOval(i*100+30, j*65+10, 12, 12);
+					  }else if(game.getBorde()[i][j].getMyPacgome().getPacgome()==Pacgomme.ORANGE){
+						  g2d.setColor(Color.ORANGE);
+						  g2d.fillOval(i*100+30, j*65+10, 17, 14);
+					  }
+				      else if(game.getBorde()[i][j].getMyPacgome().getPacgome()==Pacgomme.VERT){
+					  g2d.setColor(Color.GREEN);
+					  g2d.fillOval(i*100+30, j*65+10, 17, 14);
+				      }else if(game.getBorde()[i][j].getMyPacgome().getPacgome()==Pacgomme.VIOLET){
+					  g2d.setColor(Color.PINK);
+					  g2d.fillOval(i*100+30, j*65+10, 17, 14);
+				  }
 					
 				}
 				else if(game.getBorde()[i][j].getType()==Element.PACMAN) {
@@ -102,11 +133,11 @@ public class PackManview extends JPanel implements ActionListener {
 	    
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			
+			  if(game.getNumberPacgammes()<=0||game.getPacman().getVie()<=0){
+					 game.afficheStatus(); 
+					return;
+				  }
 			    repaint();
-			
-		
 			
 		}
 		

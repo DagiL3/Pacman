@@ -21,7 +21,7 @@ public class Personage_pacman  {
 		if(g==null)return;
 		addPoints(g);
 		g.setPacgomme();
-		
+		addVie();
 	}
 	
 	 private void addPoints(MyPacgomme p){
@@ -44,6 +44,12 @@ public class Personage_pacman  {
 	   }
 		
 	}
+	 
+	 public void addVie(){
+		 if(this.point>=5000) {
+			this.vie++;
+		 }
+	 }
 	 
 		public int getVie() {
 			return vie;
