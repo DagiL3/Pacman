@@ -196,7 +196,7 @@ public class  Game {
 				numberPacgammes++;
     			}
     			else if(i==1 && j==3) {borde[i][j]=new Bord(new MyPacgomme(Pacgomme.VERT,i,j));
-    			borde[i][j]=new Bord(new MyPacgomme(Pacgomme.BLEU,i,j));
+    			borde[i][j]=new Bord(new MyPacgomme(Pacgomme.VERT,i,j));
 				numberPacgammes++;
     			}
     			else if(i==5 && j==3) {borde[i][j]=new Bord(new MyPacgomme(Pacgomme.BLEU,i,j));
@@ -210,7 +210,7 @@ public class  Game {
     			}
     			
     			else if(i==6&& j==6) {borde[i][j]=new Bord(new MyPacgomme(Pacgomme.VERT,i,j));
-    			borde[i][j]=new Bord(new MyPacgomme(Pacgomme.BLEU,i,j));
+    			borde[i][j]=new Bord(new MyPacgomme(Pacgomme.VERT,i,j));
 				numberPacgammes++;
     			}
     			else if(borde[i][j]==null) {
@@ -437,7 +437,7 @@ public class  Game {
 
 	public void moveFantome(){
 		
-		System.out.println("Vie"+pacman.getVie());
+		//System.out.println("Vie"+pacman.getVie());
 		if(pacman.getVie()<=0||getNumberPacgammes()<=0) {
 			//afficheStatus();
 			return;
@@ -785,7 +785,7 @@ public class  Game {
 	
     
     public void movePacman() {
-    	System.out.println("Vie"+pacman.getVie());
+    	//System.out.println("Vie"+pacman.getVie());
     	if(pacman.getVie()<=0||getNumberPacgammes()<=0) {
 	    	
 	    	//afficheStatus();
