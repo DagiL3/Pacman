@@ -8,7 +8,7 @@ enum Pacgomme {
 		private Element type;
 		private int posX;
 		private int posY;
-		
+		 
 		public MyPacgomme(Pacgomme pacgom,int posX,int posY){
 			this.pacgom=pacgom;
 			this.type=Element.PACGOMME;

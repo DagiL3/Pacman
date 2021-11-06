@@ -31,15 +31,19 @@ public class Personage_pacman  {
 		 
 		 case BLEU:
 		    point=point+100;
+		   // setColor(1);
 		    break;
 		 case VIOLET:
 			 point=point+300;
+			 setColor(7);//7:pale yellow.
 			    break;
 		 case ORANGE:
 			 point=point+500;
+			    setColor(8);//orenge
 			    break;
 		 case VERT:
 			 point=point+1000;
+			  //  setColor(7);
 			    break;
 	   }
 		

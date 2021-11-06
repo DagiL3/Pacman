@@ -100,23 +100,37 @@ public class PackManview extends JPanel implements ActionListener {
 					
 				}
 				else if(game.getBorde()[i][j].getType()==Element.PACMAN) {
+				int color=	game.getBorde()[i][j].getPacman().getColor(); 
+				if(color==1) {
 					g2d.setColor(Color.yellow);
 					g2d.fillOval(i*100+30, j*65+10, 40, 40);
 					
-							//g2d.drawOval(););
+				}	else if(color==7) {
+					g2d.setColor(Color.YELLOW);
+					g2d.fillOval(i*100+30, j*65+10, 50, 50);
+				}	//g2d.drawOval(););
+				else {
+					g2d.setColor(Color.ORANGE);
+					g2d.fillOval(i*100+30, j*65+10, 40, 40);
 				}
+				
+				}
+				
 				else if(game.getBorde()[i][j].getType()==Element.FANTOME) {
 					if(game.getBorde()[i][j].getFantom1().getColor()==1) {
 					  g2d.setColor(Color.RED);
 					  g2d.fillOval(i*100+30, j*65+10, 50, 50);
 				      }else if(game.getBorde()[i][j].getFantom1().getColor()==2){
-				    	  g2d.setColor(Color.PINK);
+				    	  g2d.setColor(Color.cyan);
 						  g2d.fillOval(i*100+30, j*65+10, 50, 50);
 				      }else if(game.getBorde()[i][j].getFantom1().getColor()==3){
-				    	  g2d.setColor(Color.MAGENTA);
+				    	  g2d.setColor(Color.DARK_GRAY);
 						  g2d.fillOval(i*100+30, j*65+10, 50, 50);
 				      }else if(game.getBorde()[i][j].getFantom1().getColor()==4){
-				    	  g2d.setColor(Color.green);
+				    	  g2d.setColor(Color.GREEN);
+						  g2d.fillOval(i*100+30, j*65+10, 50, 50);
+				      }else if(game.getBorde()[i][j].getFantom1().getColor()==11){
+				    	  g2d.setColor(Color.BLUE);
 						  g2d.fillOval(i*100+30, j*65+10, 50, 50);
 				      }
 							//g2d.drawOval(););
@@ -127,18 +141,15 @@ public class PackManview extends JPanel implements ActionListener {
 			}
 		}
 	}	  
-	
-
-
 	    
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			  if(game.getNumberPacgammes()<=0||game.getPacman().getVie()<=0){
 					 game.afficheStatus(); 
-					return;
+				timer.stop();
+				  }else {
+			         repaint();
 				  }
-			    repaint();
-			
 		}
 		
 		
