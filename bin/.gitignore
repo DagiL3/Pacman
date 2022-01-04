@@ -14,3 +14,9 @@
 /Move.class
 /Position.class
 /Movement.class
+/IObservablePacman.class
+/IObserverPacman.class
+/PacmanObservable.class
+/PacmanObervers.class
+/ConstrctionGrille.class
+/Construction.class
