@@ -207,7 +207,7 @@ public class  Game {
 			int posy=fantome.getPosY();	
 			int j=posx-1;
 			if(j<0)return Direction.NONE;
-			//if (getNumberPacgammes()<=0)return;
+			
 			else if((borde[j][posy]).getType()==Element.OBSTACLE) {
 				return Direction.NONE;/*(getCell(fantome.getPosX(),fantome.getPosY()));*/
 			}
@@ -316,7 +316,7 @@ public class  Game {
 
 		public void moveFantome(){			
 			//System.out.println("Vie"+pacman.getVie());
-			if(pacman.getVie()<=0||getNumberPacgammes()<=0){
+			if(pacman.getVie()==0||getNumberPacgammes()==0){
 				//afficheStatus();
 				return;
 				//System.out.println("game Over");
@@ -524,8 +524,8 @@ public class  Game {
    * @return 
    * **/	
 		
-		public Personage_pacman FantomeToCentre(){
-			for(int i=0;i<=3;i++) {
+		public /*Personage_pacman*/ void FantomeToCentre(int i){
+			//for(int i=0;i<=3;i++) {
 				int x=posxCenterFantom[i];
 				int y=posyCenterFantom[i];
 				int fx=MyFantome[i].getPosX();
@@ -555,8 +555,8 @@ public class  Game {
 					fantome.getFantom1().setPosY(y);
 					setCellF(x,y,fantome.getFantom1()); 
 				}	
-			}
-			return pacman;				
+			
+			//return pacman;				
 		}
   /**
    		* pour initinalize le couleur de les fantoms de blue au leur color d'origine 
@@ -582,10 +582,10 @@ public class  Game {
 			  if(borde[j][posy].getType()==Element.PACGOMME){
 				  Pacgomme orange =borde[j][posy].getMyPacgome().getPacgome();
 				  pacman.mangePacgomme(borde[j][posy].getMyPacgome());
-				  if(orange==Pacgomme.ORANGE) {
+				  /*if(orange==Pacgomme.ORANGE) {
 					System.out.println("L if"+orange);
 					pacman=FantomeToCentre();					
-				  }if(orange==Pacgomme.VIOLET) {
+				  }*/if(orange==Pacgomme.VIOLET) {
 					  initalizeColor();
 				  }
 				  setNumberPacgammes();
@@ -593,7 +593,15 @@ public class  Game {
 				  if(pacman.getColor()!=7) {
 					  pacman.setVie();
 				  }
-				  borde[j][posy].getFantom1().setPosX(j+1);
+				  if(pacman.getColor()!=8) {
+					  borde[j][posy].getFantom1().setPosX(j+1);
+				  }
+				  if(pacman.getColor()==8) {
+					 FantomeToCentre(0);
+					 pacman.setVie();
+					 return Direction.LEFT;
+				  }
+				  
 			  }
 			  setCellNull(j+1,posy,borde[j][posy]);
 			  setCell(j,posy,pacman);
@@ -617,10 +625,10 @@ public class  Game {
 			  if(borde[j][posy].getType()==Element.PACGOMME) {
 				  Pacgomme orange =borde[j][posy].getMyPacgome().getPacgome();
 				  pacman.mangePacgomme(borde[j][posy].getMyPacgome());
-				  if(orange==Pacgomme.ORANGE) {
+				 /* if(orange==Pacgomme.ORANGE) {
 					  System.out.println("R if "+orange);
 					  pacman=  FantomeToCentre();
-				  }else if(orange==Pacgomme.VIOLET) {
+				  }else */if(orange==Pacgomme.VIOLET) {
 					  initalizeColor();
 				  }
 				  setNumberPacgammes();
@@ -628,11 +636,15 @@ public class  Game {
 			  else if(borde[j][posy].getType()==Element.FANTOME){
 				  if(pacman.getColor()!=7) {
 					  pacman.setVie();
-					  }
-				  if(pacman.getColor()==1/*||pacman.getColor()==8*/) {
-					  pacman.setVie();
 				  }
-				  borde[j][posy].getFantom1().setPosX(j-1);
+				  if(pacman.getColor()!=8) {
+					  borde[j][posy].getFantom1().setPosX(j-1);
+				  }
+				  if(pacman.getColor()==8) {
+					  pacman.setVie();
+					  FantomeToCentre(1);
+					  return Direction.RIGHT;
+				  }	  
 			  }
 		  }
 		  setCellNull(j-1,posy,borde[j][posy]);
@@ -643,7 +655,6 @@ public class  Game {
 	
 		public Direction moveDown(Bord b){
 		  pacman =b.getPacman();
-		  //   if(pacman.getVie()<=0||getNumberPacgammes()<=0)System.out.print("game Over");
 		  int posx=pacman.getPosX();
 		  int posy=pacman.getPosY();
 		  int i=posy+1;
@@ -656,10 +667,10 @@ public class  Game {
 			  if(borde[posx][i].getType()==Element.PACGOMME) {
 				  Pacgomme orange =borde[posx][i].getMyPacgome().getPacgome();
 				  pacman.mangePacgomme(borde[posx][i].getMyPacgome());
-				  if(orange==Pacgomme.ORANGE) {
+				/*  if(orange==Pacgomme.ORANGE) {
 					  System.out.println("D if"+orange);
 					  pacman=  FantomeToCentre();
-				  }else if(orange==Pacgomme.VIOLET) {
+				  }else*/ if(orange==Pacgomme.VIOLET) {
 					  initalizeColor();
 				  }
 				  setNumberPacgammes();
@@ -667,7 +678,14 @@ public class  Game {
 				  if(pacman.getColor()!=7){
 					  pacman.setVie();	
 				  }
-				  borde[posx][i].getFantom1().setPosY(i-1);
+				  if(pacman.getColor()!=8){
+					  borde[posx][i].getFantom1().setPosY(i-1);
+				  }
+				  if(pacman.getColor()==8){
+					  pacman.setVie();
+					  FantomeToCentre(2);
+					  return  Direction.DOWN;
+				  }	 
 			  }		 
 			  setCellNull(posx,i-1,borde[posx][i]);	   
 			  setCell(posx,i,pacman);
@@ -691,19 +709,27 @@ public class  Game {
 			  if(borde[posx][i].getType()==Element.PACGOMME) {
 				  Pacgomme orange =borde[posx][i].getMyPacgome().getPacgome();
 				  pacman.mangePacgomme(borde[posx][i].getMyPacgome());
-				  if(orange==Pacgomme.ORANGE) {
+				/*  if(orange==Pacgomme.ORANGE) {
 					  System.out.println("U if"+orange);
 					  pacman= FantomeToCentre();
 				  }
-				  else if(orange==Pacgomme.VIOLET) {
+				  else*/ if(orange==Pacgomme.VIOLET) {
 					  initalizeColor();
 				  }
 				  setNumberPacgammes();		  
 			  }else if(borde[posx][i].getType()==Element.FANTOME){
-				  if(pacman.getColor()==8) {
-					  pacman.setVie();	
+				  if( pacman.getColor()!=7) {
+					  pacman.setVie();
 				  }
-				  borde[posx][i].getFantom1().setPosY(i+1);
+				  if(pacman.getColor()!=8) {
+					  borde[posx][i].getFantom1().setPosY(i+1);
+				  }				  
+				  if(pacman.getColor()==8){
+					  pacman.setVie();
+					  FantomeToCentre(3);
+					  return Direction.UP;
+				  }
+				 
 			  }
 			  setCellNull(posx,i+1,borde[posx][i]);
 			  setCell(posx,i,pacman);
@@ -750,7 +776,7 @@ public class  Game {
 	  }
 	  
 		public void movePacman(){
-		  if(pacman.getVie()<=0||getNumberPacgammes()<=0) {
+		  if(pacman.getVie()==0||getNumberPacgammes()==0) {
 			  return;
 			
 		  }else {
