@@ -1,6 +1,5 @@
 enum Pacgomme {
-		    BLEU ,VIOLET, ORANGE, VERT;
-			
+		    BLEU ,VIOLET, ORANGE, VERT;	
 	}
  
 	public class MyPacgomme{	

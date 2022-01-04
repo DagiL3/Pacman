@@ -18,6 +18,7 @@ public class App {
 		
 		frame.setLocation(FRAME_LOCATION_X, FRAME_LOCATION_Y);
 		frame.add(view);
+	
 	    frame.setSize(view.getSize());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		   
@@ -46,3 +47,4 @@ public class App {
 	}
 	
 }
+ 

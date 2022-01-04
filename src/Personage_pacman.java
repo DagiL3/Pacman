@@ -31,7 +31,7 @@ public class Personage_pacman  {
 		 
 		 case BLEU:
 		    point=point+100;
-		   // setColor(1);
+		    //setColor(1);
 		    break;
 		 case VIOLET:
 			 point=point+300;
@@ -43,7 +43,7 @@ public class Personage_pacman  {
 			    break;
 		 case VERT:
 			 point=point+1000;
-			  //  setColor(7);
+	             //setcolor()//verte
 			    break;
 	   }
 		

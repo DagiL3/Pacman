@@ -2,7 +2,6 @@
 public class Personage_fantome {
 	private  int color;
 	
-
 	private Element type;
 	private int posX;
 	private int posY;
@@ -17,33 +16,30 @@ public class Personage_fantome {
 	public void mangePacgomme(MyPacgomme g){
 		//addPoints(g);
 		g.setPacgomme();
-		
 	}
 	
-	public int getColor() {
+	public int getColor(){
 		return color;
 	}
-
 	public void setColor(int color) {
 		this.color = color;
 	}
 	public int getPosX() {
 		return posX;
 	}
-	public void setPosX(int posX) {
+	public void setPosX(int posX){
 		this.posX = posX;
 	}
-	public int getPosY() {
+	public int getPosY(){
 		return posY;
 	}
-	public void setPosY(int posY) {
+	public void setPosY(int posY){
 		this.posY = posY;
 	}
-	public Element getType() {
+	public Element getType(){
 		return type;
 	}
-
-	public void setType(Element type) {
+	public void setType(Element type){
 		this.type = type;
 	}
 }
