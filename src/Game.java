@@ -3,18 +3,13 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-
-
 public class  Game {
 	
-	  Bord[][] borde;
+    Bord[][] borde;
 	private static int numberPacgammes;
-	//private Bord bloc =new Bord(new Obstacle());
 	private Personage_pacman pacman;
-	Personage_fantome[] MyFantome;//=new Personage_fantome[4];
+	Personage_fantome[] MyFantome;
 			
-	
-		
 		Construction grille;
 		Direction status =Direction.LEFT;
 		Direction status2 =Direction.LEFT;
@@ -35,8 +30,6 @@ public class  Game {
 		static List<Direction> transition=new ArrayList<>();
 		static List<Direction> direction2=new ArrayList<>();
 		
-       
-   
 		private void createListRandom() { 		
 			direction.add(Direction.DOWN);
 			direction.add(Direction.LEFT);
@@ -94,9 +87,7 @@ public class  Game {
 			borde[posX][posY].setPacman(pacman);
 		}
 		
-		/**
-		 * copie b to the positin (posx,posy) 
-
+		/*copie b to the positin (posx,posy) 
 		 * if b is pacgomme then (x,y) become pacgomme
 		 * if b is fantome then (x,y) become famtom
 		 * */
@@ -119,8 +110,7 @@ public class  Game {
 			}
 		}
 		  
-		/**copie fantome to the positin (posx,posy) 
-		 * **/
+		/**copie fantome to the positin (posx,posy) */
 		public void setCellF(int posX,int posY,Personage_fantome fantome){
 			//borde[posX][posY].setType(Element.EMPTY);
 			borde[posX][posY].setType((Element)fantome.getType());
@@ -165,10 +155,7 @@ public class  Game {
 			}
 			return choisi;
 		}
- 		
-	
-    
-		
+ 			
 		/**
 		 * Fontem movement
 		 */
@@ -580,7 +567,8 @@ public class  Game {
 		  }
 	  }
 		/*Pacman*/  
-		public Direction moveLeft(Bord b){//moveUp	
+		// pacman
+		public Direction moveLeft(Bord b){	
 		  pacman =b.getPacman();	   
 		  int posx=pacman.getPosX();
 		  int posy=pacman.getPosY();			   
@@ -597,7 +585,7 @@ public class  Game {
 				  if(orange==Pacgomme.ORANGE) {
 					System.out.println("L if"+orange);
 					pacman=FantomeToCentre();					
-				  }else if(orange==Pacgomme.VIOLET) {
+				  }if(orange==Pacgomme.VIOLET) {
 					  initalizeColor();
 				  }
 				  setNumberPacgammes();
@@ -653,7 +641,7 @@ public class  Game {
 		  return Direction.RIGHT;
 	  }
 	
-		public Direction moveDown(Bord b){//moveRight
+		public Direction moveDown(Bord b){
 		  pacman =b.getPacman();
 		  //   if(pacman.getVie()<=0||getNumberPacgammes()<=0)System.out.print("game Over");
 		  int posx=pacman.getPosX();
@@ -688,7 +676,7 @@ public class  Game {
 		  return  Direction.DOWN;
 	  }
 	  
-		public  Direction moveUp(Bord b){//moveLeft         
+		public  Direction moveUp(Bord b){      
 		  pacman=b.getPacman();
 		  //if(pacman.getVie()<=0||getNumberPacgammes()<=0)System.out.print("game Over");
 		  int posx=pacman.getPosX();
@@ -807,49 +795,7 @@ public class  Game {
 	}
     
    
-	/*public void moveFantome() {
-		  Bord b;
-		  Bord current;
-		 /* for(int i=0;i<MyFantome.length;i++){	
-			  int x=MyFantome[i].getPosX();
-			  int y=MyFantome[i].getPosY();
-			  int c=MyFantome[i].getColor();
-			  System.out.println(x+":"+y+":"+c);
-		  }*/
-		 
-		/*  for(int i=0;i<MyFantome.length;i++){	
-			  int x=MyFantome[i].getPosX();
-			  int y=MyFantome[i].getPosY();
-			  current=getCell(x,y);
-			  if(current==null)return;
-			  System.out.println("tour"+current.getFantom1().getColor());
-	    		 Direction diex=status;
-	    		 if(status==Direction.NONE) {
-	    	     	diex=getRandom();
-	    		 }
-	    		 System.out.println(diex);
-	    		switch(diex){
-	    		
-	    		case RIGHT:
-	    			status=moveRightF(current);
-	    			diex=status;
-	    			    break;
-	    		case LEFT:			
-	    			status=	moveLeftF(current);
-	    			diex=status;
-							 break;
-	    		case DOWN:	    	
-	    			status=moveDownF(current);				 
-	    			diex=status;
-						 break;
-	    		case UP:					
-	    			status=moveUpF(current);
-					diex=status;
-	    		 break;
-	    		}	
-		  }
-	    }*/
-    
+	
     
 	
 
