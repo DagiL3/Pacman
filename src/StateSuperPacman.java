@@ -2,17 +2,19 @@
 public class StateSuperPacman extends IStatePacman{
 
 	private Game game;
+	private Personage_fantome fantome;
 	public StateSuperPacman(Game game){
 		super(game);
-		this.game=game;
-		
+		this.game=game;		
 	}
 	
 	 @Override
 	void setCouleur(){
 	    	game.getPacman().setColor(8);
+	    	game.initalizeColorBlue();
 	  }
-	@Override
+/********************************pacman*********************************************************************/
+	 @Override
 	public void moveLeft(Bord b) { 
 		game.setPacman(b.getPacman());   
 		  int posx=game.getPacman().getPosX();
@@ -28,8 +30,8 @@ public class StateSuperPacman extends IStatePacman{
 				   game.getPacman().mangePacgomme(game.borde[j][posy].getMyPacgome());
 				  game.setNumberPacgammes();	   
 			  }else if(game.borde[j][posy].getType()==Element.FANTOME){
-					   game.getPacman().setVie();
-					   game.FantomeToCentre(0);
+					  // game.getPacman().setVie();
+					   game.FantomeToCentre(0,j,posy);
 						 return ;
 			  }
 			  game.setCellNull(j+1,posy,game.borde[j][posy]);
@@ -57,8 +59,8 @@ public class StateSuperPacman extends IStatePacman{
 				  game.setNumberPacgammes();		  
 			  }
 			  else if(game.borde[j][posy].getType()==Element.FANTOME){
-					  game.getPacman().setVie();
-					  game.FantomeToCentre(1);
+					 // game.getPacman().setVie();
+					  game.FantomeToCentre(1,j,posy);
 						 return ;
 			  }  
 		  }
@@ -84,8 +86,8 @@ public class StateSuperPacman extends IStatePacman{
 				  game.getPacman().mangePacgomme(game.borde[posx][i].getMyPacgome());
 				  game.setNumberPacgammes();
 			  }else if(game.borde[posx][i].getType()==Element.FANTOME){
-					  game.getPacman().setVie();	
-					  game.FantomeToCentre(2);
+					//  game.getPacman().setVie();	
+					  game.FantomeToCentre(2,posx,i);
 						 return ;
 			  }		 
 			  game.setCellNull(posx,i-1,game.borde[posx][i]);	   
@@ -112,8 +114,8 @@ public class StateSuperPacman extends IStatePacman{
 				  game.getPacman().mangePacgomme(game.borde[posx][i].getMyPacgome());
 				  game.setNumberPacgammes();	  
 			  }else if(game.borde[posx][i].getType()==Element.FANTOME){ 
-					  game.getPacman().setVie();
-					  game.FantomeToCentre(3);
+					  //game.getPacman().setVie();
+					  game.FantomeToCentre(3,posx,i);
 						 return ;
 			  }
 			  game.setCellNull(posx,i+1,game.borde[posx][i]);
@@ -123,6 +125,162 @@ public class StateSuperPacman extends IStatePacman{
 		  return;
 	 }
 	
-
+	/********************************fantom*********************************************************************/
+	public Direction moveRightF(Bord b){	
+		fantome=b.getFantom1();
+		System.out.print(fantome.getPosX());
+		int posx=fantome.getPosX();
+		int posy=fantome.getPosY();	
+		int j=posx+1;
+		if( j>=game.borde.length)return Direction.NONE; 
+		
+		if((game.borde[j][posy]).getType()==Element.OBSTACLE){
+			return Direction.NONE; 
+		}
+		else if((game.borde[j][posy]).getType()!=Element.OBSTACLE){   
+			
+			Bord rec_avanve=game.borde[j][posy]; 	   				
+			if(rec_avanve.getType()==Element.PACGOMME){
+				game.borde[j][posy].getMyPacgome().setPosX(j-1);
+				game.setCellNullF(j-1,posy,rec_avanve);
+				fantome.setPosX(j);
+				game.setCellF(j,posy,fantome);  					
+			}else if(rec_avanve.getType()==Element.FANTOME){
+				if((j+1==game.borde.length) || ((game.borde[j+1][posy]).getType()==Element.OBSTACLE)){
+					return Direction.NONE;
+				}
+				game.borde[j][posy].getFantom1().setPosX(j-1);
+				//return Direction.NONE;
+				game.setCellNullF(j-1,posy,rec_avanve);
+				game.setCellF(j,posy,fantome);
+				fantome.setPosX(j);
+			}	else if(rec_avanve.getType()==Element.EMPTY){
+				//borde[j][posy].g.setPosX(j-1);
+				//return Direction.NONE;
+				game.setCellNullF(j-1,posy,rec_avanve);
+				fantome.setPosX(j);
+				game.setCellF(j,posy,fantome);
+			} else if(rec_avanve.getType()==Element.PACMAN){
+				 game.FantomeToCentre(1,posx,posy);
+			}
+		}
+		return Direction.RIGHT;	
+	}
+    @Override
+	public Direction moveLeftF(Bord b){		
+		fantome =b.getFantom1();
+		int posx=fantome.getPosX();
+		int posy=fantome.getPosY();	
+		int j=posx-1;
+		if(j<0)return Direction.NONE;
+		
+		else if((game.borde[j][posy]).getType()==Element.OBSTACLE) {
+			return Direction.NONE;/*(getCell(fantome.getPosX(),fantome.getPosY()));*/
+		}
+		else{		 
+			Bord rec_anvance=game.borde[j][posy]; 			
+			if(rec_anvance.getType()==Element.PACGOMME) {
+				game.borde[j][posy].getMyPacgome().setPosX(j+1);
+				game.setCellNullF(j+1,posy,rec_anvance); 
+				fantome.setPosX(j);
+				game.setCellF(j,posy,fantome);
+			}else if(rec_anvance.getType()==Element.FANTOME) {	
+				if((j-1==-1) || ((game.borde[j-1][posy]).getType()==Element.OBSTACLE)) {
+					  return Direction.NONE;
+				}
+				game.borde[j][posy].getFantom1().setPosX(j+1);
+				game.setCellNullF(j+1,posy,rec_anvance); 
+				
+				game.setCellF(j,posy,fantome);		
+				fantome.setPosX(j);
+			}
+			else if(rec_anvance.getType()==Element.EMPTY) {
+				//borde[j][posy].getFantom1().setPosX(j+1);
+				game.setCellNullF(j+1,posy,rec_anvance); 
+				fantome.setPosX(j);
+				game.setCellF(j,posy,fantome);		
+			}else if(rec_anvance.getType()==Element.PACMAN) {
+				 game.FantomeToCentre(0,posx,posy);
+			}
+			//System.out.println(posx+posy+"L "+fantome.getColor());			
+		}	   
+		return Direction.LEFT;
+	}
+	@Override
+	public  Direction moveDownF(Bord b){		          
+		fantome =b.getFantom1();
+		int posx=fantome.getPosX();
+		int posy=fantome.getPosY();			 
+		int i=posy+1;
+		if(i>=game.borde.length)return Direction.NONE;
+		if((game.borde[posx][i]).getType()==Element.OBSTACLE) {
+			return Direction.NONE; 
+		}
+		else /*((borde[posx][i]).getType()!=Element.OBSTACLE)*/{				
+			Bord rec_avence=game.borde[posx][i];
+			if(rec_avence.getType()==Element.PACGOMME) {
+				game.borde[posx][i].getMyPacgome().setPosY(i-1);
+				game.setCellNullF(posx,i-1,rec_avence);
+				fantome.setPosY(i);	   
+				game.setCellF(posx,i,fantome);
+			}else if(rec_avence.getType()==Element.FANTOME) {
+				if((i+1==game.borde.length) || ((game.borde[posx][i+1]).getType()==Element.OBSTACLE)) {
+					  return Direction.NONE;
+				}
+				game.borde[posx][i].getFantom1().setPosY(i-1);
+				game.setCellNullF(posx,i-1,rec_avence);
+				fantome.setPosY(i);	   
+				game.setCellF(posx,i,fantome);	
+			}else if(rec_avence.getType()==Element.EMPTY) {
+				//borde[posx][i].getFantom1().setPosY(i-1);
+				game.setCellNullF(posx,i-1,rec_avence);
+				 
+				game.setCellF(posx,i,fantome);	
+				fantome.setPosY(i);	  
+			}else if(rec_avence.getType()==Element.PACMAN) {
+				game.FantomeToCentre(2,posx,posy);
+			}		
+			return Direction.DOWN;
+		} 
+		
+	}
+	@Override
+	public  Direction moveUpF(Bord b){		
+		fantome =b.getFantom1();
+		int posx=fantome.getPosX();
+		int posy=fantome.getPosY();			 
+		int i=posy-1;
+		if(i<0)return Direction.NONE;
+		if((game.borde[posx][i]).getType()==Element.OBSTACLE){
+			return Direction.NONE; 
+		}
+		else {
+			Bord rec_avence=game.borde[posx][i];
+			if(rec_avence.getType()==Element.PACGOMME)
+			{
+				game.borde[posx][i].getMyPacgome().setPosY(i+1);
+				game.setCellNullF(posx,i+1,rec_avence);	
+				fantome.setPosY(i);
+				game.setCellF(posx,i,fantome);
+			}else if(rec_avence.getType()==Element.FANTOME) {
+				if((i-1==-1) || ((game.borde[posx][i-1]).getType()==Element.OBSTACLE)) {	
+					  return Direction.NONE;
+				}
+				game.borde[posx][i].getFantom1().setPosY(i+1);
+				game.setCellNullF(posx,i+1,rec_avence);	
+				
+				game.setCellF(posx,i,fantome);
+				fantome.setPosY(i);
+			}else if(rec_avence.getType()==Element.EMPTY) {
+				//borde[posx][i].getFantom1().setPosY(i+1);
+				game.setCellNullF(posx,i+1,rec_avence);	
+				fantome.setPosY(i);
+				game.setCellF(posx,i,fantome);								
+			}else if(rec_avence.getType()==Element.PACMAN) {
+				game.FantomeToCentre(3,posx,posy);
+			}
+			return Direction.UP;
+		}
+	}
 
 }
