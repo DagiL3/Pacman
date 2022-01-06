@@ -15,7 +15,7 @@ public class StateInvisible extends IStatePacman {
 	    	game.initalizeColorBlue();
 	  }
 	 
-	 /****************pacman*****************************/
+	 /***********************************pacman**************************************************/
 	 @Override    
 	 	public void moveLeft(Bord b) {
 			game.setPacman(b.getPacman());   
@@ -123,7 +123,7 @@ public class StateInvisible extends IStatePacman {
 			  return;
 		 }
 		
-		/**************fantoms***************************/
+    /************************fantoms*******************************************************************/
 		@Override
 		public Direction moveRightF(Bord b){	
 			fantome=b.getFantom1();
@@ -167,9 +167,8 @@ public class StateInvisible extends IStatePacman {
 						fantome.setPosX(j);
 						game.setCellF(j,posy,fantome);
 					}
-					else{
-						return Direction.NONE;
-					}
+					
+					
 				}
 					
 			}
@@ -216,9 +215,8 @@ public class StateInvisible extends IStatePacman {
 						game.setCellNullF(j+1,posy,rec_anvance); 
 						fantome.setPosX(j);
 						game.setCellF(j,posy,fantome);
-					}else {
-						return Direction.NONE;	
 					}
+					
 				}
 				//System.out.println(posx+posy+"L "+fantome.getColor());			
 			}	   
@@ -262,13 +260,11 @@ public class StateInvisible extends IStatePacman {
 						game.setCellNullF(posx,i-1,rec_avence);
 						fantome.setPosY(i);	   
 						game.setCellF(posx,i,fantome);
-					}else {
-						return Direction.NONE;
 					}
+					
 				}		
 				return Direction.DOWN;
 			} 
-			
 		}
 		
 		@Override
@@ -309,8 +305,6 @@ public class StateInvisible extends IStatePacman {
 						game.setCellNullF(posx,i+1,rec_avence);	
 						fantome.setPosY(i);
 						game.setCellF(posx,i,fantome);
-					}else {
-						return Direction.NONE;
 					}
 					
 				}

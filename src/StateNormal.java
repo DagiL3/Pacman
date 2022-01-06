@@ -5,7 +5,6 @@ public  class StateNormal extends IStatePacman {
 	public StateNormal(Game game){
 		super(game);
 		this.game=game;
-		
 	}
 	
 	 @Override
@@ -119,6 +118,7 @@ public  class StateNormal extends IStatePacman {
 		  }  
 		 
 	 }
+	
 	/********************************fantom*********************************************************************/
 	public Direction moveRightF(Bord b){	
 		fantome=b.getFantom1();
@@ -155,18 +155,21 @@ public  class StateNormal extends IStatePacman {
 				fantome.setPosX(j);
 				game.setCellF(j,posy,fantome);
 			} else if(rec_avanve.getType()==Element.PACMAN){
+				if(game.mykeybord==0) {
 				game.borde[j][posy].getPacman().setVie();
 				game.borde[j][posy].getPacman().setPosX(j-1);
 				game.setCellNullF(j-1,posy,rec_avanve);
 				fantome.setPosX(j);
 				game.setCellF(j,posy,fantome);
+				}
 			}
 			
 		}
 		return Direction.RIGHT;	
 	}
-    @Override
-	public Direction moveLeftF(Bord b){		
+    
+	@Override
+    public Direction moveLeftF(Bord b){		
 		fantome =b.getFantom1();
 		int posx=fantome.getPosX();
 		int posy=fantome.getPosY();	
@@ -199,16 +202,19 @@ public  class StateNormal extends IStatePacman {
 				fantome.setPosX(j);
 				game.setCellF(j,posy,fantome);		
 			}else if(rec_anvance.getType()==Element.PACMAN) {
+				if(game.mykeybord==0) {
 				game.borde[j][posy].getPacman().setVie();
 				game.borde[j][posy].getPacman().setPosX(j+1);
 				game.setCellNullF(j+1,posy,rec_anvance); 
 				fantome.setPosX(j);
 				game.setCellF(j,posy,fantome);
+				}
 			}
 			//System.out.println(posx+posy+"L "+fantome.getColor());			
 		}	   
 		return Direction.LEFT;
 	}
+	
 	@Override
 	public  Direction moveDownF(Bord b){		          
 		fantome =b.getFantom1();
@@ -241,16 +247,19 @@ public  class StateNormal extends IStatePacman {
 				game.setCellF(posx,i,fantome);	
 				fantome.setPosY(i);	  
 			}else if(rec_avence.getType()==Element.PACMAN) {
+				if(game.mykeybord==0) {
 				game.borde[posx][i].getPacman().setVie();
 				game.borde[posx][i].getPacman().setPosY(i-1);
 				game.setCellNullF(posx,i-1,rec_avence);
 				fantome.setPosY(i);	   
 				game.setCellF(posx,i,fantome);
+				}
 			}		
 			return Direction.DOWN;
 		} 
 		
 	}
+	
 	@Override
 	public  Direction moveUpF(Bord b){		
 		fantome =b.getFantom1();
@@ -284,11 +293,13 @@ public  class StateNormal extends IStatePacman {
 				fantome.setPosY(i);
 				game.setCellF(posx,i,fantome);								
 			}else if(rec_avence.getType()==Element.PACMAN) {
-				game.borde[posx][i].getPacman().setVie();
-				game.borde[posx][i].getPacman().setPosY(i+1);
-				game.setCellNullF(posx,i+1,rec_avence);	
-				fantome.setPosY(i);
-				game.setCellF(posx,i,fantome);
+				if(game.mykeybord==0) {
+					game.borde[posx][i].getPacman().setVie();
+					game.borde[posx][i].getPacman().setPosY(i+1);
+					game.setCellNullF(posx,i+1,rec_avence);	
+					fantome.setPosY(i);
+					game.setCellF(posx,i,fantome);
+				}
 			}
 			return Direction.UP;
 		}
