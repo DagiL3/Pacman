@@ -143,7 +143,6 @@ public class StateSuperPacman extends IStatePacman{
 			return Direction.NONE; 
 		}
 		else if((game.borde[j][posy]).getType()!=Element.OBSTACLE){   
-			
 			Bord rec_avanve=game.borde[j][posy]; 	   				
 			if(rec_avanve.getType()==Element.PACGOMME){
 				game.borde[j][posy].getMyPacgome().setPosX(j-1);

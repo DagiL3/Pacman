@@ -10,6 +10,10 @@ public class  Game {
 	private static int numberPacgammes;
 	private Personage_pacman pacman;
 	public Personage_fantome[] MyFantome;
+	long Timer1_Start;
+	long Timer1_End;
+	long Timer2_Start;
+	long Timer2_End;
 	
 	private Construction grille;
 	private Personage_fantome fantome;
@@ -17,6 +21,7 @@ public class  Game {
 	private IStatePacman stateSuper;
 	private IStatePacman stateInvisible;
 	private IStatePacman stateNormal;
+		
 		Direction status =Direction.LEFT;
 		Direction status2 =Direction.LEFT;
 		Direction status3=Direction.LEFT;
@@ -40,18 +45,17 @@ public class  Game {
 			direction.add(Direction.RIGHT);
 			direction.add(Direction.UP);
 			
-			
 			direction1.add(Direction.DOWN);
 			direction1.add(Direction.LEFT);
 			direction1.add(Direction.RIGHT);
-			direction1.add(Direction.UP);
-			
+			direction1.add(Direction.UP);			
 		}
 		
 		public	void Mycolors() {
 			colors.add(1);
 			colors.add(2);colors.add(3);colors.add(4);
 		}
+		
 		public Game(){
             this.grille=new Construction(this);
 			this.borde= grille.getBorde();
@@ -67,6 +71,13 @@ public class  Game {
 			Mycolors();
 			createListRandom();
 		}
+		
+		public void verifyTimingState(){
+			if(Timer1_Start>=Timer1_End || Timer1_Start>=Timer1_End ) {
+				 setState(stateNormal);
+			}
+		}
+		
 		public void addPoints(MyPacgomme p){
 			if(p==null)return;
 			if(p.getPacgome()==null)return;
@@ -74,21 +85,22 @@ public class  Game {
 			 
 			 case BLEU:
 			    pacman.setPoint(100);
-			  
 			    //setColor(1);
 			    break;
 			 case ORANGE:
 				  pacman.setPoint(500);
 				  initalizeColorBlue();
 				    pacman.setColor(8);//orenge
-				   
+				    Timer1_Start=System.currentTimeMillis();
+				    Timer1_End=Timer1_Start+1000;
 				    setState(stateSuper);
 				    break;
 			 case VIOLET:
 				 pacman.setPoint(300);
 				 initalizeColor();
 				 pacman.setColor(7);//7:pale yellow
-				
+				 Timer2_Start=System.currentTimeMillis();
+				 Timer2_End=Timer2_Start+1000;
 				 setState(stateInvisible);
 				    break;
 			
@@ -101,7 +113,6 @@ public class  Game {
 		}	
 		
 		public Bord getCell(int posX,int posY){
-
 			return borde[posX][posY];
 		}
 		/*
@@ -118,8 +129,7 @@ public class  Game {
 				borde[posX][posY].setFantom1(b.getFantom1());
 			}   
 		}
-		/*
-		   copie pacman to the positin (posx,posy) 
+		/* copie pacman to the positin (posx,posy) 
 		 **/
  
 		public void setCell(int posX,int posY,Personage_pacman pacman){
@@ -150,7 +160,7 @@ public class  Game {
 			}
 		}
 		  
-		/*copie fantome to the positin (posx,posy) */
+		/*copie fantome to the positin (posx,posy)*/
 		public void setCellF(int posX,int posY,Personage_fantome fantome){
 			//borde[posX][posY].setType(Element.EMPTY);
 			borde[posX][posY].setType((Element)fantome.getType());
@@ -308,9 +318,11 @@ public class  Game {
 		public IStatePacman getState() {
 			return state;
 		}
+		
 		public void setState(IStatePacman state) {
 			this.state = state;
 		}
+	
 		public Personage_pacman getPacman(){
 			return pacman;
 		}
