@@ -5,10 +5,10 @@ public class App {
 	private static final int FRAME_LOCATION_Y = 0;
 	
 	public static void main(String[] args) {
-		
+		Game game1=new Game();
 		
 		JFrame frame=new JFrame("Pac man");
-		Game game1=new Game();
+		
 		PackManview view =new PackManview(game1);
 
 	//	game1.moveFantome();

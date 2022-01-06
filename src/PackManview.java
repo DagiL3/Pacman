@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
@@ -15,7 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class PackManview extends JPanel implements ActionListener {
+public class PackManview extends JPanel implements ActionListener,KeyListener {
 	
 	public final static int WIDTH = 1200;
 	public final static int HEIGHT = 700;
@@ -34,7 +36,10 @@ public class PackManview extends JPanel implements ActionListener {
 		setSize(WIDTH,HEIGHT);
 		// pacman=(game.getCell(5,0)).getPacman();
 		timer=new Timer(300,this); 
-		timer.start();		
+		timer.start();	
+		addKeyListener(this);
+		setFocusable(true);
+		setFocusTraversalKeysEnabled(false);
 	}
 	
 	@Override
@@ -152,6 +157,21 @@ public class PackManview extends JPanel implements ActionListener {
 		}else {
 			repaint();
 		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		game.mykeybord = e.getKeyCode();
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		game.mykeybord=0;
 	}	
 }
 

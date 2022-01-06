@@ -20,3 +20,8 @@
 /PacmanObervers.class
 /ConstrctionGrille.class
 /Construction.class
+/IStatePacman.class
+/StateNormal.class
+/StateSuperPacman.class
+/StateInvisible.class
+/Context.class

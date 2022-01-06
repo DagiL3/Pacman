@@ -7,47 +7,35 @@ public class Personage_pacman  {
 	public Element type;
 	private int posX;
 	private int posY;
+	private Game game;
 	
-	public Personage_pacman( int posX,int posY){
+	
+	public Personage_pacman( int posX,int posY,Game game){
 		this.vie=3;
 		this.color=1;//yellow
 		this.point=0;
 		this.type=Element.PACMAN;
 		this.posX=posX;
 		this.posY= posY;
+		this.game=game;
 	}
 	
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
 	public void mangePacgomme(MyPacgomme g){
 		if(g==null)return;
-		addPoints(g);
+		game.addPoints(g);
 		g.setPacgomme();
 		addVie();
 	}
 	
-	 private void addPoints(MyPacgomme p){
-		if(p==null)return;
-		if(p.getPacgome()==null)return;
-		 switch(p.getPacgome()){
-		 
-		 case BLEU:
-		    point=point+100;
-		    //setColor(1);
-		    break;
-		 case VIOLET:
-			 point=point+300;
-			 setColor(7);//7:pale yellow.
-			    break;
-		 case ORANGE:
-			 point=point+500;
-			    setColor(8);//orenge
-			    break;
-		 case VERT:
-			 point=point+1000;
-	             //setcolor()//verte
-			    break;
-	   }
-		
-	}
+	
 	 
 	 public void addVie(){
 		 if(this.point>=5000) {
@@ -76,7 +64,7 @@ public class Personage_pacman  {
 		}
 
 		public void setPoint(int point) {
-			this.point = point;
+			this.point = this.point+point;
 		}
 
 		public Object getType() {
@@ -99,6 +87,8 @@ public class Personage_pacman  {
 		public void setPosY(int posY) {
 			this.posY = posY;
 		}
+
+		
 }
 
 	

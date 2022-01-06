@@ -1,15 +1,16 @@
 
 public class Construction {
 	 
-
+   Game game;
 	Bord[][] borde;
 		private static int numberPacgammes =0; 
 		private Bord bloc =new Bord(new Obstacle());
 		private Personage_pacman pacman;
 		Personage_fantome[] MyFantome=new Personage_fantome[4];
 	
-		public Construction(){
+		public Construction(Game game){
 			this.borde= new Bord[10][10];
+			this.game=game;
 	     	addbloc();
 		   addElementToBored();	
 		}
@@ -46,7 +47,7 @@ public class Construction {
 				else if(i==9 && j==8) {borde[i][j]=new Bord(new Personage_fantome(i,j,4));
 				MyFantome[3]=borde[i][j].getFantom1();
 				}
-				else if(i==5 && j==0) {borde[i][j]=new Bord(new Personage_pacman(i,j));
+				else if(i==5 && j==0) {borde[i][j]=new Bord(new Personage_pacman(i,j,game));
 				this.pacman=borde[i][j].getPacman();
 				}
 				/*creating pacgomme blue*/
