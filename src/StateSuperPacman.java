@@ -16,6 +16,7 @@ public class StateSuperPacman extends IStatePacman{
 /********************************pacman*********************************************************************/
 	 @Override
 	public void moveLeft(Bord b) { 
+		 if(game.mykeybord==0)return;
 		game.setPacman(b.getPacman());   
 		  int posx=game.getPacman().getPosX();
 		  int posy=game.getPacman().getPosY();			   
@@ -43,6 +44,7 @@ public class StateSuperPacman extends IStatePacman{
 	
 	@Override
 	public void moveRight(Bord b) {
+		if(game.mykeybord==0)return;
 		 game.setPacman(b.getPacman());
 		  //  if(pacman.getVie()<=0||getNumberPacgammes()<=0)System.out.print("game Over");
 		  int posx=game.getPacman().getPosX();
@@ -72,6 +74,7 @@ public class StateSuperPacman extends IStatePacman{
 	
 	@Override
 	public void moveDown(Bord b){
+		if(game.mykeybord==0)return;
 		  game.setPacman(b.getPacman());
 		  int posx=game.getPacman().getPosX();
 		  int posy=game.getPacman().getPosY();
@@ -98,7 +101,8 @@ public class StateSuperPacman extends IStatePacman{
 	 }
 	
 	@Override
-	public void moveUp(Bord b) {    
+	public void moveUp(Bord b) {  
+		if(game.mykeybord==0)return;
 		  game.setPacman(b.getPacman());
 		  //if(pacman.getVie()<=0||getNumberPacgammes()<=0)System.out.print("game Over");
 		  int posx=game.getPacman().getPosX();
@@ -249,9 +253,9 @@ public class StateSuperPacman extends IStatePacman{
 				game.FantomeToCentre(2,posx,posy);
 				}
 			}		
-			return Direction.DOWN;
+			
 		} 
-		
+		return Direction.DOWN;
 	}
 	
 	@Override
@@ -288,11 +292,12 @@ public class StateSuperPacman extends IStatePacman{
 				game.setCellF(posx,i,fantome);								
 			}else if(rec_avence.getType()==Element.PACMAN) {
 				if(game.mykeybord==0) {
-				game.FantomeToCentre(3,posx,posy);
+				    game.FantomeToCentre(3,posx,posy);
 				}
 			}
-			return Direction.UP;
+			
 		}
+		return Direction.UP;
 	}
 
 }

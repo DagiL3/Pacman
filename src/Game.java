@@ -237,13 +237,23 @@ public class  Game {
         * @return 
         * **/	
 		public  void FantomeToCentre(int i,int fx,int fy){
-			//for(int i=0;i<=3;i++) {
 				int x=posxCenterFantom[i];
 				int y=posyCenterFantom[i];
 
 				Bord rec_avanve=borde[x][y]; 
 				Bord fantome=getCell(fx,fy);
-				  
+				if(rec_avanve.getType()==Element.FANTOME) {
+					for(int k=0;k<4;k++) {
+						if(rec_avanve.getType()!=Element.FANTOME) {
+							i=k;
+							break;
+						}
+					}
+					 x=posxCenterFantom[i];
+					 y=posyCenterFantom[i];
+
+					 rec_avanve=borde[x][y]; 
+				}
 			    if(rec_avanve.getType()==Element.PACGOMME){
 					rec_avanve.getMyPacgome().setPosX(fx); rec_avanve.getMyPacgome().setPosY(fy);
 					setCellNullF(fx,fy,rec_avanve);
@@ -256,10 +266,11 @@ public class  Game {
 					setCellNullF(fx,fy,rec_avanve);
 					setCellF(x,y,fantome.getFantom1()); 
 				}else if(rec_avanve.getType()==Element.FANTOME){
-					rec_avanve.getFantom1().setPosX(fx); rec_avanve.getFantom1().setPosY(fy);
-					setCellNullF(fx,fy,rec_avanve);
-					
-				 }
+					/*rec_avanve.getFantom1().setPosX(fx); rec_avanve.getFantom1().setPosY(fy);
+					  setCellF(fx,fy,rec_avanve.getFantom1());*/
+					return;
+					}
+				 
 			    setCellF(x,y,fantome.getFantom1()); 
 			    fantome.getFantom1().setPosX(x);
 				fantome.getFantom1().setPosY(y);
