@@ -217,142 +217,140 @@ public class  Game {
 					break;   			
 				case OBSTACLE:			
 					System.out.print(" OBSTACLE ");
-					  break;  	
-				  case EMPTY:    				
-					  //System.out.print(borde[i][j].getType());
-					  System.out.print(" EMPTY ");
-					  break;
-				  case FANTOME:    				
-					  //System.out.print(borde[i][j].getType());
-					  System.out.print(" FANTOME ");
-					  break;	
-    			}
-			  } 		 		
-			  System.out.println();
-		  } 
-		  System.out.println();
-		  return true;
-	  }
-       
-		/*le pacman mange un pacgomme orange les fantome
-         vonent au centre et change leur color en blue 
-        * @return 
-        * **/	
-		public  void FantomeToCentre(int i,int fx,int fy){
-				int x=posxCenterFantom[i];
-				int y=posyCenterFantom[i];
-
-				Bord rec_avanve=borde[x][y]; 
-				Bord fantome=getCell(fx,fy);
-				if(rec_avanve.getType()==Element.FANTOME) {
-					for(int k=0;k<4;k++) {
-						if(rec_avanve.getType()!=Element.FANTOME) {
-							i=k;
-							break;
-						}
-					}
-					 x=posxCenterFantom[i];
-					 y=posyCenterFantom[i];
-
-					 rec_avanve=borde[x][y]; 
+					break;  	
+				case EMPTY:    				
+					System.out.print(" EMPTY ");
+					break;
+				case FANTOME:    				
+					System.out.print(" FANTOME ");
+					break;	
 				}
-			    if(rec_avanve.getType()==Element.PACGOMME){
-					rec_avanve.getMyPacgome().setPosX(fx); rec_avanve.getMyPacgome().setPosY(fy);
-					setCellNullF(fx,fy,rec_avanve);
-				}else if(rec_avanve.getType()==Element.PACMAN){
-					pacman=rec_avanve.getPacman();
-					System.out.println("center: "+pacman.getPosX());
-					setCell(fx,fy,pacman);
-					pacman.setPosX(fx);	pacman.setPosY(fy);
-				}else if(rec_avanve.getType()==Element.EMPTY){
-					setCellNullF(fx,fy,rec_avanve);
-					setCellF(x,y,fantome.getFantom1()); 
-				}else if(rec_avanve.getType()==Element.FANTOME){
-					/*rec_avanve.getFantom1().setPosX(fx); rec_avanve.getFantom1().setPosY(fy);
-					  setCellF(fx,fy,rec_avanve.getFantom1());*/
-					return;
-					}
-				 
-			    setCellF(x,y,fantome.getFantom1()); 
-			    fantome.getFantom1().setPosX(x);
-				fantome.getFantom1().setPosY(y);
-		}
-        
-		public void movePacman(){
-			 state.movePacman();
-		}
-		
-		/*pour initinalize le couleur de les fantoms de blue au leur color d'origine */
-		public void initalizeColor(){
-		  for(int i=1;i<=4;i++){
-			  MyFantome[i-1].setColor(i);
-		  }
-	  }
-	
-		/*pour initinalize le couleur de les fantoms de blue au leur color d'origine */
-		public void initalizeColorBlue(){
-		  for(int i=0;i<4;i++){
-			  MyFantome[i].setColor(11);
-		  }
-	  }
-
-		public void afficheStatus(){
-		  if(pacman.getVie()==0) {
-			  JOptionPane.showMessageDialog(null, "Game Over ): ", " Game Status ",
-					  JOptionPane.INFORMATION_MESSAGE);		  
-		  }else if(pacman.getVie()>0&&getNumberPacgammes()<=0) {
-			  JOptionPane.showMessageDialog(null, "Pacman Won (: ", " Game Status ",
-					  JOptionPane.INFORMATION_MESSAGE);
-		  }	
-	  } 	
+			} 		 		
+			System.out.println();
+		} 
+		System.out.println();
+		return true;
+	}
        
-		/*gatter setter*/  
-		public IStatePacman getState() {
-			return state;
+	/*le pacman mange un pacgomme orange les fantome
+         vonent au centre et change leur color en blue 
+	 * @return 
+	 * **/	
+	public void FantomeToCentre(int i,int fx,int fy){
+		int x=posxCenterFantom[i];
+		int y=posyCenterFantom[i];
+		Bord rec_avanve=borde[x][y]; 
+		Bord fantome=getCell(fx,fy);
+		if(rec_avanve.getType()==Element.FANTOME) {
+			for(int k=0;k<4;k++) {
+				if(rec_avanve.getType()!=Element.FANTOME) {
+					i=k;
+					break;
+				}
+			}
+			x=posxCenterFantom[i];
+			y=posyCenterFantom[i];			 
+			rec_avanve=borde[x][y]; 
 		}
-		
-		public void setState(IStatePacman state) {
-			this.state = state;
+		if(rec_avanve.getType()==Element.PACGOMME){
+			rec_avanve.getMyPacgome().setPosX(fx); rec_avanve.getMyPacgome().setPosY(fy);
+			setCellNullF(fx,fy,rec_avanve);
+		}else if(rec_avanve.getType()==Element.PACMAN){
+			pacman=rec_avanve.getPacman();
+			System.out.println("center: "+pacman.getPosX());
+			setCell(fx,fy,pacman);
+			pacman.setPosX(fx);	pacman.setPosY(fy);
+		}else if(rec_avanve.getType()==Element.EMPTY){
+			setCellNullF(fx,fy,rec_avanve);
+			setCellF(x,y,fantome.getFantom1()); 
+		}else if(rec_avanve.getType()==Element.FANTOME){
+			return;
 		}
+		setCellF(x,y,fantome.getFantom1()); 
+		fantome.getFantom1().setPosX(x);
+		fantome.getFantom1().setPosY(y);
+	}
+        
 	
-		public Personage_pacman getPacman(){
-			return pacman;
-		}
+	public void movePacman(){
+		state.movePacman();
+	}
 		
-		public Bord[][] getBorde(){
-			  return this.borde;
-		  }
-			
-		public int getNumberPacgammes(){
-			  return numberPacgammes;
-		  }
-			
-		public void setNumberPacgammes(){
-			  numberPacgammes--;
-			}
+		/*pour initinalize le couleur de les fantoms de blue au leur color d'origine */
+	
+	public void initalizeColor(){
+		for(int i=1;i<=4;i++){
+			MyFantome[i-1].setColor(i);
+		}
+	}
+	
+		/*pour initinalize le couleur de les fantoms de blue au leur color d'origine */
+	public void initalizeColorBlue(){
+		for(int i=0;i<4;i++){
+			MyFantome[i].setColor(11);
+		}
+	}
 
-		public void setPacman(Personage_pacman pacman) {
-				this.pacman = pacman;
-			}
+
+	public void afficheStatus(){
+		if(pacman.getVie()==0) {
+			JOptionPane.showMessageDialog(null, "Game Over ): ", " Game Status ",
+					JOptionPane.INFORMATION_MESSAGE);		  
+		}else if(pacman.getVie()>0&&getNumberPacgammes()<=0) {
+			JOptionPane.showMessageDialog(null, "Pacman Won (: ", " Game Status ",
+					JOptionPane.INFORMATION_MESSAGE);
+		}	
+	} 	
+    
+		/*gatter setter*/  
+	public IStatePacman getState() {
+		return state;
+	}
 		
-		public void changeLabyrinthes(){
-			 
-			 borde[4][5].setType(Element.EMPTY);
-			 
-			 borde[3][7].setType(Element.EMPTY);
-			 
-			 borde[4][1].setType(Element.EMPTY);
+	
+	public void setState(IStatePacman state) {
+		this.state = state;
+	}
+	
+	
+	public Personage_pacman getPacman(){
+		return pacman;
+	}
+		
+	
+	public Bord[][] getBorde(){
+		return this.borde;
+	}
+	
 			
-		}
+	public int getNumberPacgammes(){
+		return numberPacgammes;
+	}
+			
+
+	public void setNumberPacgammes(){
+		numberPacgammes--;
+	}
+
+	
+	public void setPacman(Personage_pacman pacman) {
+		this.pacman = pacman;
+	}
+	
+		
+	public void changeLabyrinthes(){	 
+		borde[4][5].setType(Element.EMPTY);
+		borde[3][7].setType(Element.EMPTY);	 
+		borde[4][1].setType(Element.EMPTY);		
+	}
       
-		public void wraparound(){
-        	if(pacman.getPosX()==0&&pacman.getPosY()==0){
-        		
-        	}if((pacman.getPosX()==9&&pacman.getPosY()==0)){
-        		setCellNull(9,0,getCell(0,0));
-        		setCell(0,0,pacman);
-        	}
-        }
+	public void wraparound(){
+		if(pacman.getPosX()==0&&pacman.getPosY()==0){  		
+		}if((pacman.getPosX()==9&&pacman.getPosY()==0)){
+			setCellNull(9,0,getCell(0,0));
+			setCell(0,0,pacman);
+		}
+	}
 
 } 
 	

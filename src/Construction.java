@@ -69,6 +69,7 @@ public class Construction {
 			}
 		}
 	}
+	
 	public Bord[][] getBorde() {
 		return borde;
 	}
@@ -76,7 +77,7 @@ public class Construction {
 	public void setBorde(Bord[][] borde) {
 		this.borde = borde;
 	}
-
+	
 	public static int getNumberPacgammes() {
 		return numberPacgammes;
 	}
@@ -100,10 +101,11 @@ public class Construction {
 	public void setMyFantome(Personage_fantome[] myFantome) {
 		MyFantome = myFantome;
 	}
+	
 	public Bord getBloc() {
 		return bloc;
 	}
-
+	
 	public void setBloc(Bord bloc) {
 		this.bloc = bloc;
 	}
