@@ -8,12 +8,6 @@ public class StateInvisible extends IStatePacman {
 		this.game=game;		
 	}
 	
-	@Override
-	void setCouleur(){
-		game.getPacman().setColor(7);
-		game.initalizeColorBlue();
-	}
-	
 	 /***********************************Pacman**************************************************/
 	@Override    
 	public void moveLeft(Bord b) {
@@ -21,7 +15,7 @@ public class StateInvisible extends IStatePacman {
 		int posx=game.getPacman().getPosX();
 		int posy=game.getPacman().getPosY();			   
 		int j=posx-1;
-		if(j<0 && posx!=0 && posy!=0 )return ;
+		if(j<0 && /*posx!=0 &&*/ posy!=0 )return ;
 		if((posx==0 && posy==0)){
 			j=9;
 			posy=0;
@@ -59,7 +53,7 @@ public class StateInvisible extends IStatePacman {
 		int posx=game.getPacman().getPosX();
 		int posy=game.getPacman().getPosY();
 		int j=posx+1;
-		if(j>=game.borde.length && posx!=9&&posy!=0 )return ;
+		if(j>=game.borde.length/* && posx!=9*/&&posy!=0 )return ;
 		if((posx==9&&posy==0)){
 			j=0;
 			posy=0;

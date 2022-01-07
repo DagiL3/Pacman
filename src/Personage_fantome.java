@@ -13,8 +13,8 @@ public class Personage_fantome {
 		this.posY=posY;
 	}
 	
+	/********************************************Getters and Setters******************************************************/
 	public void mangePacgomme(MyPacgomme g){
-		//addPoints(g);
 		g.setPacgomme();
 	}
 	

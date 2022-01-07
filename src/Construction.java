@@ -14,7 +14,10 @@ public class Construction {
 		addbloc();
 		addElementToBored();	
 	}	
-	/**creating obstacle in the borde de taile 10*10 */
+	
+	/**
+	 * @brief  Construction d'Obstacle dans la  grille(borde de taille 10 * 10)
+	 */
 	public void addbloc(){
 		borde[0][4]=bloc; borde[1][1]=bloc;	borde[1][7]=bloc;borde[1][6]=bloc; borde[2][2]=bloc;borde[2][3]=bloc;
 		borde[3][5]=bloc;borde[4][1]=new Bord(new Obstacle());
@@ -25,9 +28,9 @@ public class Construction {
 		borde[8][1]=bloc;
 	}
 	
-	/**adding members to the borde one pacman , 
-	 * four fantome and different pacgomme
-	 * */
+	/**
+	 * @brief creer et ajouter des membres un pacman, quatre fantomes et différents pac gomme au grille(borde) 
+	 */
 	public void addElementToBored(){
 		for(int i=0;i<borde.length;i++) {
 			for(int j=0;j<borde[i].length;j++) {
@@ -69,6 +72,8 @@ public class Construction {
 			}
 		}
 	}
+	
+	/********************************************Getters and Setters******************************************************/
 	
 	public Bord[][] getBorde() {
 		return borde;

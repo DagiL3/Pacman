@@ -38,7 +38,10 @@ public class  Game {
 	public int[] posyCenterFantom= {4,4,5,5};
 	Direction StatusPacman=Direction.RIGHT;
 	int index=0 ;
-			
+	
+	/**
+	 * @brief  Eviter les fantomes de choisir  le meme direction
+	 * */
 	private void createListRandom() { 		
 			direction.add(Direction.DOWN);
 			direction.add(Direction.LEFT);
@@ -50,7 +53,9 @@ public class  Game {
 			direction1.add(Direction.RIGHT);
 			direction1.add(Direction.UP);			
 		}
-		
+	/**
+	 * @brief ajoute les 4 couleurs dans le tableau colors
+	 * */	
 	public	void Mycolors() {
 			colors.add(1);
 			colors.add(2);colors.add(3);colors.add(4);
@@ -69,18 +74,24 @@ public class  Game {
 		Mycolors();
 		createListRandom();
 	}
-		
+	
+	/**
+	 * @brief  limite la durée de pouvoir de pacman 
+	 * */
 	public void verifyTimingState(){
 		if(System.currentTimeMillis()>Timer1_End ) {
 			initalizeColor();
 			pacman.setColor(1);
-			System.out.println("le temps est terminer il faut changer le state en stateNormal");
 			setState(stateNormal);
 			Timer1_Start=0;
 			Timer1_End=0;
 		}
 	}
-		
+	
+	/**
+	 * @brief  change detat selon les types de pac gomme
+	 * @param p est pacgomme
+	 */
 	public void addPoints(MyPacgomme p){
 		if(p==null)return;
 		if(p.getPacgome()==null)return;
@@ -110,13 +121,22 @@ public class  Game {
 			break;
 		}		
 	}	
-		
+
+	/**
+	 * @brief pour obtenir le case spécifie
+	 * @param y est possiton en axe vertical
+	 * @param  x est possiton en axe horizontal 
+	 * @return une case de la grille 
+	 */
 	public Bord getCell(int posX,int posY){
 		return borde[posX][posY];
 	}
-	/**copie b to the positin (posx,posy) 
-	 * if b is pacgomme then (x,y) become Empty
-	 * if b is fantome then (x,y) become famtom
+	
+	/** 
+	 * @brief move le case b à la position (posx, posy)
+	 * @param  x est possiton en axe horizontal 
+	 * @param y est possiton en axe vertical
+	 * @param  b est le case a deplace
 	 * */
 	public void setCellNull(int posX,int posY,Bord b){
 		if(b.getType()==Element.OBSTACLE)return;
@@ -127,17 +147,23 @@ public class  Game {
 			borde[posX][posY].setFantom1(b.getFantom1());
 		}   
 	}
-		
-	/*copie pacman to the positin (posx,posy) 
-	 **/
+	
+	/** 
+	 * @brief move pacman a la position (posx, posy)
+	 * @param  x est possiton en axe horizontal 
+	 * @param y est possiton en axe vertical
+	 * @param  pacman est le case a deplace
+	 * */
 	public void setCell(int posX,int posY,Personage_pacman pacman){
 		borde[posX][posY].setType((Element) pacman.getType());
 		borde[posX][posY].setPacman(pacman);
 	}
-		
-	/*copie b to the positin (posx,posy) 
-	 * if b is pacgomme then (x,y) become pacgomme
-	 * if b is fantome then (x,y) become famtom
+	
+	/** 
+	 * @brief move b a la position (posx, posy) par apport le fantoms
+	 * @param  x est possiton en axe horizontal 
+	 * @param y est possiton en axe vertical
+	 * @param  b est le case a deplace
 	 * */
 	public void  setCellNullF(int posX,int posY, Bord b){
 		if(b.getType()==Element.OBSTACLE)return;
@@ -156,21 +182,22 @@ public class  Game {
 		}
 	}
 		  
-	/*copie fantome to the positin (posx,posy)*/
+	/** 
+	 * @brief move fantome a la position (posx, posy)
+	 * @param  x est possiton en axe horizontal 
+	 * @param y est possiton en axe vertical
+	 * @param  fantome est le case a deplace
+	 * */
 	public void setCellF(int posX,int posY,Personage_fantome fantome){
 		borde[posX][posY].setType((Element)fantome.getType());
 		borde[posX][posY].setFantom1(fantome);
 		borde[posX][posY].getFantom1().setColor(fantome.getColor());
 	}
 		
-	Direction getRandomp(){
-		index = (int)(Math.random() * direction1.size());
-		return direction1.get(index);
-	}
-
-	/*To get Random value of enum direction because fantomes move randomly*/
+	/**
+	 *  @brief Eviter les fantomes de choisir  le meme direction
+	*/
 	Direction getRandom(){
-		/* return  Direction.values()[(int) (Math.random() * Direction.values().length)];*/
 		if(!(direction.isEmpty())){
 			index = (int)(Math.random() * direction.size());
 			choisi=direction.get(index);
@@ -199,43 +226,13 @@ public class  Game {
 		}
 		return choisi;
 	}
- 			
-	public void moveFantome(){	
-		state.moveFantome();
-	}
-	
-	public Boolean afficheBord(){
-		for(int i=0;i<borde.length;i++) {
-			for(int j=0;j<borde[i].length;j++) {
-				switch(borde[i][j].getType())
-				{
-				case PACMAN:
-					System.out.print(" PACMAN ");
-					break;
-				case PACGOMME:   				
-					System.out.print(borde[i][j].getMyPacgome()/*.getPacgome()+" "*/);
-					break;   			
-				case OBSTACLE:			
-					System.out.print(" OBSTACLE ");
-					break;  	
-				case EMPTY:    				
-					System.out.print(" EMPTY ");
-					break;
-				case FANTOME:    				
-					System.out.print(" FANTOME ");
-					break;	
-				}
-			} 		 		
-			System.out.println();
-		} 
-		System.out.println();
-		return true;
-	}
-       
-	/*le pacman mange un pacgomme orange les fantome
-         vonent au centre et change leur color en blue 
-	 * @return 
-	 * **/	
+ 
+	/** 
+	 * @brief move fantome au centre 
+	 * @param fx est possiton en axe horizontal 
+	 * @param fy est possiton en axe vertical
+	 * @param  i un element de tableau posxCenterFantom pour choisir le centre de la grille 
+	 * */
 	public void FantomeToCentre(int i,int fx,int fy){
 		int x=posxCenterFantom[i];
 		int y=posyCenterFantom[i];
@@ -271,27 +268,45 @@ public class  Game {
 		fantome.getFantom1().setPosY(y);
 	}
         
-	
 	public void movePacman(){
 		state.movePacman();
 	}
-		
-		/*pour initinalize le couleur de les fantoms de blue au leur color d'origine */
 	
+	public void moveFantome(){	
+		state.moveFantome();
+	}
+	  
+	/**
+	 * @brief pour initialiser la couleur des fantomes du bleu a leur couleur d origine
+	 *  */
 	public void initalizeColor(){
 		for(int i=1;i<=4;i++){
 			MyFantome[i-1].setColor(i);
 		}
 	}
 	
-		/*pour initinalize le couleur de les fantoms de blue au leur color d'origine */
+	/**
+	 * @brief  pour initialiser la couleur des fantomes du leur couleur d origine au bleu 
+	 * */
 	public void initalizeColorBlue(){
 		for(int i=0;i<4;i++){
 			MyFantome[i].setColor(11);
 		}
 	}
 
-
+	/**
+	 * @brief  changer la forme des labyrinthes
+	 * */
+	public void changeLabyrinthes(){	 
+		borde[4][5]=new Bord(new MyPacgomme(Pacgomme.ORANGE,4,5));
+		borde[3][7]=new Bord(new MyPacgomme(Pacgomme.ORANGE,3,7));
+		borde[4][1]=new Bord(new MyPacgomme(Pacgomme.ORANGE,4,1));
+		numberPacgammes=numberPacgammes+3;
+	}
+	
+	/**
+	 * @brief afficher l etat du jeu
+	 * */
 	public void afficheStatus(){
 		if(pacman.getVie()==0) {
 			JOptionPane.showMessageDialog(null, "Game Over ): ", " Game Status ",
@@ -302,55 +317,33 @@ public class  Game {
 		}	
 	} 	
     
-		/*gatter setter*/  
+	/*********************************Getters and Setters*************************************************************/  
 	public IStatePacman getState() {
 		return state;
 	}
 		
-	
 	public void setState(IStatePacman state) {
 		this.state = state;
 	}
-	
-	
+		
 	public Personage_pacman getPacman(){
 		return pacman;
 	}
 		
-	
 	public Bord[][] getBorde(){
 		return this.borde;
 	}
-	
-			
+		
 	public int getNumberPacgammes(){
 		return numberPacgammes;
 	}
 			
-
 	public void setNumberPacgammes(){
 		numberPacgammes--;
 	}
 
-	
 	public void setPacman(Personage_pacman pacman) {
 		this.pacman = pacman;
 	}
-	
-		
-	public void changeLabyrinthes(){	 
-		borde[4][5].setType(Element.EMPTY);
-		borde[3][7].setType(Element.EMPTY);	 
-		borde[4][1].setType(Element.EMPTY);		
-	}
-      
-	public void wraparound(){
-		if(pacman.getPosX()==0&&pacman.getPosY()==0){  		
-		}if((pacman.getPosX()==9&&pacman.getPosY()==0)){
-			setCellNull(9,0,getCell(0,0));
-			setCell(0,0,pacman);
-		}
-	}
-
 } 
 	

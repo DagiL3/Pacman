@@ -24,17 +24,14 @@ public class PackManview extends JPanel implements ActionListener,KeyListener {
 	private Game game;
 	private int currentSpeed = 3;
 	private Timer timer;
-	private long sleep=40;
-	//private Personage_pacman pacman=getCell();
-	//Personage_fantome fantome;
-	Bord bord;
+	private long sleep=40;	
+	public Bord bord;
 	
 	public PackManview(Game game){
 		super();
 		this.game=game;	
 		setOpaque(true);
 		setSize(WIDTH,HEIGHT);
-		// pacman=(game.getCell(5,0)).getPacman();
 		timer=new Timer(300,this); 
 		timer.start();	
 		addKeyListener(this);
@@ -48,10 +45,7 @@ public class PackManview extends JPanel implements ActionListener,KeyListener {
 		Graphics2D g2d=(Graphics2D) g;
 		g2d.setBackground(Color.BLUE);		
 		drawRectangle(g2d);		
-		//movePacman (game.getCell(5,0));
-		//moveFantome(game.getCell(0, 9));
 		if(game.getNumberPacgammes()<=0||game.getPacman().getVie()<=0){
-			// game.afficheStatus(); 
 			return;
 		}else {
 			movement();
@@ -62,8 +56,6 @@ public class PackManview extends JPanel implements ActionListener,KeyListener {
 		if(game.getNumberPacgammes()<=0||game.getPacman().getVie()<=0){
 			return;
 		}
-		//game.afficheStatus();
-		//System.out.print("game Over");
 		game.moveFantome();
 		game.movePacman();
 	}
@@ -73,13 +65,17 @@ public class PackManview extends JPanel implements ActionListener,KeyListener {
 		game.afficheStatus();
 	}	
 	
+	/**
+	 * @brief  permet de de dessiner different taille avec different couleur de rectangle pour la view
+	 * @param g2d est permet de dessiner 
+	 */
 	private void drawRectangle(Graphics2D g2d )  { 
 		int width=100;
 		int hight=70;
 		g2d.setColor(Color.BLACK);
 		g2d.setColor(Color.PINK);
 		g2d.setFont(new Font("Ink Free",Font.BOLD,50));
-		g2d.drawString("vie: "+ game.getPacman().getVie(), 1020, 60);	
+		g2d.drawString("vie: "+ game.getPacman().getVie(), 1020, 60);
 		for(int i=0;i <game.getBorde().length; i++){
 			for(int j=0; j<game.getBorde()[i].length; j++){
 				if(game.getBorde()[i][j].getType()==Element.OBSTACLE){
@@ -88,9 +84,6 @@ public class PackManview extends JPanel implements ActionListener,KeyListener {
 				}else if(game.getBorde()[i][j].getType()==Element.PACGOMME) {
 					if(game.getBorde()[i][j].getMyPacgome().getPacgome()==Pacgomme.BLEU) {
 						g2d.setColor(Color.BLUE);
-						/*x position is i*100+30 : y position is j*65+10
-						 * for i =0  j varies(0-9) so we go horizontal 
-						 * */
 						g2d.fillOval(i*100+30, j*65+10, 12, 12);
 					}else if(game.getBorde()[i][j].getMyPacgome().getPacgome()==Pacgomme.ORANGE){
 						g2d.setColor(Color.ORANGE);
@@ -141,9 +134,19 @@ public class PackManview extends JPanel implements ActionListener,KeyListener {
 					g2d.fill(new Rectangle2D.Double(i*100,j*65,width,hight));
 				}
 			}
-		}		
+			
+		}	g2d.setColor(Color.lightGray);
+		g2d.fill(new Rectangle2D.Double(0,0,10,70));	
+		g2d.fill(new Rectangle2D.Double(1000,0,10,70));
+		g2d.setColor(Color.DARK_GRAY);
+		g2d.fill(new Rectangle2D.Double(0,70,5,700));
+		g2d.fill(new Rectangle2D.Double(1000,70,5,700));
 	}	  	    
 	
+	/**
+	 * @brief  la méthode est invoquée automatiquement chaque fois qu'il y a un mouvement
+	 * @param e est un ActionEvent 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(game.getNumberPacgammes()<=0||game.getPacman().getVie()==0){
@@ -158,12 +161,19 @@ public class PackManview extends JPanel implements ActionListener,KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {}
 
+	/**
+	 * @brief  la méthode est invoquée automatiquement chaque fois que le clavier est appuyé
+	 * @param e est un KeyEvent 
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		game.mykeybord = e.getKeyCode();
 		System.out.println("je vais au right: "+game.mykeybord+":");
 	}
-	
+	/**
+	 * @brief  la méthode est invoquée automatiquement chaque fois que le clavier est relache
+	 * @param e est un KeyEvent 
+	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		game.mykeybord=0;

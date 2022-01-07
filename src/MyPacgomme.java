@@ -14,6 +14,8 @@ enum Pacgomme {
 			this.posX=posX;
 			this.posY=posY;
 		}
+	
+		/********************************Getters and Setters******************************************************/
 		
 		public int getPosX() {
 			return posX;

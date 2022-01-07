@@ -8,7 +8,7 @@ public class Obstacle {
 	  this.color=3;
 	  this.type=Element.OBSTACLE;
   }
-
+  /********************************************Getters and Setters******************************************************/
 public int getColor() {
 	return color;
 }

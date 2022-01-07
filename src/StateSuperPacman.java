@@ -3,16 +3,12 @@ public class StateSuperPacman extends IStatePacman{
 
 	private Game game;
 	private Personage_fantome fantome;
+	
 	public StateSuperPacman(Game game){
 		super(game);
 		this.game=game;		
 	}
 	
-	@Override
-	void setCouleur(){
-		game.getPacman().setColor(8);
-		game.initalizeColorBlue();
-	}
 /********************************pacman*********************************************************************/
 	@Override
 	public void moveLeft(Bord b) { 
@@ -21,7 +17,7 @@ public class StateSuperPacman extends IStatePacman{
 		int posx=game.getPacman().getPosX();
 		int posy=game.getPacman().getPosY();			   
 		int j=posx-1;
-		if(j<0 && posx!=0 && posy!=0 )return ;
+		if(j<0 &&/* posx!=0 &&*/ posy!=0 )return ;
 		if((posx==0 && posy==0)){
 			j=9;
 			posy=0;
@@ -58,7 +54,7 @@ public class StateSuperPacman extends IStatePacman{
 		int posx=game.getPacman().getPosX();
 		int posy=game.getPacman().getPosY();
 		int j=posx+1;
-		if(j>=game.borde.length && posx!=9&&posy!=0 )return ;
+		if(j>=game.borde.length &&posy!=0 )return ;
 		if((posx==9&&posy==0)){
 			j=0;
 			posy=0;
@@ -114,7 +110,6 @@ public class StateSuperPacman extends IStatePacman{
 		return;
 	}
 	
-	
 	@Override
 	public void moveUp(Bord b) {  
 		if(game.mykeybord==0)return;
@@ -143,6 +138,7 @@ public class StateSuperPacman extends IStatePacman{
 	}
 	
 	/********************************fantom*********************************************************************/
+	
 	@Override
 	public Direction moveRightF(Bord b){	
 		fantome=b.getFantom1();
@@ -222,7 +218,7 @@ public class StateSuperPacman extends IStatePacman{
 	}
 	
 	@Override
-	public  Direction moveDownF(Bord b){		          
+	public  Direction moveDownF(Bord b){         
 		fantome =b.getFantom1();
 		int posx=fantome.getPosX();
 		int posy=fantome.getPosY();			 

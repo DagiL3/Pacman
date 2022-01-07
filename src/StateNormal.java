@@ -7,19 +7,16 @@ public  class StateNormal extends IStatePacman {
 		super(game);
 		this.game=game;
 	}
-	
-	 @Override
-	 void setCouleur(){
-		 game.getPacman().setColor(1);
-	 }
+
  /********************************pacman*********************************************************************/
-	@Override
+
+	 @Override
 	public void moveLeft(Bord b) {
 		game.setPacman(b.getPacman());   
 		int posx=game.getPacman().getPosX();
 		int posy=game.getPacman().getPosY();		
 		  int j=posx-1;
-		  if(j<0 && posx!=0 && posy!=0 )return ;
+		  if(j<0 &&/* posx!=0 &&*/ posy!=0 )return ;
 		  if((posx==0&&posy==0)){
 			  j=9;
 			  posy=0;
@@ -57,7 +54,7 @@ public  class StateNormal extends IStatePacman {
 		int posx=game.getPacman().getPosX();
 		int posy=game.getPacman().getPosY();
 		int j=posx+1;
-		if(j>=game.borde.length && posx!=9&&posy!=0 )return ;
+		if(j>=game.borde.length /*&& posx!=9 */&& posy!=0 )return ;
 		if((posx==9&&posy==0)){
 			j=0;
 			posy=0;
@@ -116,7 +113,6 @@ public  class StateNormal extends IStatePacman {
 		}  
 	}
 	
-
 	@Override
 	public void moveUp(Bord b) {    
 		game.setPacman(b.getPacman());
@@ -187,7 +183,6 @@ public  class StateNormal extends IStatePacman {
 		return Direction.RIGHT;	
 	}
     
-
 	@Override
 	public Direction moveLeftF(Bord b){		
 		fantome =b.getFantom1();
@@ -232,7 +227,6 @@ public  class StateNormal extends IStatePacman {
 		return Direction.LEFT;
 	}
 	
-
 	@Override
 	public  Direction moveDownF(Bord b){		          
 		fantome =b.getFantom1();
@@ -274,7 +268,6 @@ public  class StateNormal extends IStatePacman {
 			return Direction.DOWN;
 		} 	
 	}
-	
 	
 	@Override
 	public  Direction moveUpF(Bord b){		

@@ -7,12 +7,15 @@ abstract class IStatePacman {
 	private Bord[][] borde;
 	private Personage_pacman pacman;
 	private Personage_fantome fantome;
+	
 	public IStatePacman(Game game){
 		this.game=game;
 		this.pacman=game.getPacman();	
 		this.borde=game.getBorde();
 	}
-	
+	/**
+	 * @brief  est responsable du deplacement les 4 fantomes 
+	 */
 	public void moveFantome(){
 		if(pacman.getVie()<=0||game.getNumberPacgammes()<=0){			
 			return;
@@ -25,6 +28,9 @@ abstract class IStatePacman {
 		}
 	}
 	
+	/**
+	 * @brief  est responsable du deplacement le pacman
+	 */
 	public void movePacman(){
 		if(game.getPacman().getVie()<=0||game.getNumberPacgammes()<=0) {
 			return;
@@ -49,7 +55,9 @@ abstract class IStatePacman {
 			}
 		}
 	}
-
+	/**
+	 * @brief  est responsable du déplacement le premier fantome
+	 */
 	private void moveFantome1(){
 		Bord b;
 		Bord current;	
@@ -85,6 +93,9 @@ abstract class IStatePacman {
 		}	
 	}
 	
+	/**
+	 * @brief  est responsable du déplacement le deuxieme fantome
+	 */
 	private void moveFantome2(){
 		Bord b;
 		Bord current;
@@ -120,6 +131,9 @@ abstract class IStatePacman {
 		}	
 	}
  
+	/**
+	 * @brief  est responsable du déplacement le troisieme  fantome
+	 */
 	private void moveFantome3(){
 		Bord b;
 		Bord current;
@@ -153,7 +167,10 @@ abstract class IStatePacman {
 			break;
 		}	
 	}
-  	
+
+	/**
+	 * @brief  est responsable du déplacement le quatrieme  fantome
+	 */
 	private void moveFantome4(){
 		Bord b;
 		Bord current;
@@ -188,7 +205,7 @@ abstract class IStatePacman {
 		}	
 	}
 	
-	abstract void setCouleur();
+	//abstract void setCouleur();
 	abstract void moveLeft(Bord b);
 	abstract void moveRight(Bord b);
 	abstract void moveDown(Bord b);
