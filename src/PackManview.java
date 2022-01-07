@@ -85,9 +85,7 @@ public class PackManview extends JPanel implements ActionListener,KeyListener {
 				if(game.getBorde()[i][j].getType()==Element.OBSTACLE){
 					g2d.setColor(Color.BLACK);
 					g2d.fill(new Rectangle2D.Double(i*100,j*65,width,hight));
-					
 				}else if(game.getBorde()[i][j].getType()==Element.PACGOMME) {
-					
 					if(game.getBorde()[i][j].getMyPacgome().getPacgome()==Pacgomme.BLEU) {
 						g2d.setColor(Color.BLUE);
 						/*x position is i*100+30 : y position is j*65+10
@@ -104,15 +102,13 @@ public class PackManview extends JPanel implements ActionListener,KeyListener {
 					}else if(game.getBorde()[i][j].getMyPacgome().getPacgome()==Pacgomme.VIOLET){
 						g2d.setColor(Color.PINK);
 						g2d.fillOval(i*100+30, j*65+10, 17, 14);
-					}
-					
+					}			
 				}
 				else if(game.getBorde()[i][j].getType()==Element.PACMAN) {
 					int color=	game.getBorde()[i][j].getPacman().getColor(); 
 					if(color==1) {
-					g2d.setColor(Color.yellow);
-					g2d.fillOval(i*100+30, j*65+10, 40, 40);
-					
+						g2d.setColor(Color.yellow);
+						g2d.fillOval(i*100+30, j*65+10, 40, 40);			
 					}else if(color==7) {
 						g2d.setColor(new Color(239, 230, 112));//jaune pale
 						g2d.fillOval(i*100+30, j*65+10, 35, 35);
@@ -145,9 +141,9 @@ public class PackManview extends JPanel implements ActionListener,KeyListener {
 					g2d.fill(new Rectangle2D.Double(i*100,j*65,width,hight));
 				}
 			}
-		}
-		
+		}		
 	}	  	    
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(game.getNumberPacgammes()<=0||game.getPacman().getVie()==0){
@@ -160,15 +156,14 @@ public class PackManview extends JPanel implements ActionListener,KeyListener {
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-	}
+	public void keyTyped(KeyEvent e) {}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		game.mykeybord = e.getKeyCode();
-		
+		System.out.println("je vais au right: "+game.mykeybord+":");
 	}
-
+	
 	@Override
 	public void keyReleased(KeyEvent e) {
 		game.mykeybord=0;

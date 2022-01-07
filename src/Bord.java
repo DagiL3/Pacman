@@ -1,5 +1,6 @@
 public  class Bord {
-	 private Element type;
+	
+	private Element type;
 	 private Personage_pacman pacman;
 	 private Personage_fantome fantom1;
 	/* private Personage_fantome fantom2;
@@ -76,7 +77,9 @@ public  class Bord {
 			this.type = type;
 		}
 	
-
+	 public void setObstacle(Obstacle obstacle) {
+			this.obstacle = obstacle;
+		}
 	
 
 	

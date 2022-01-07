@@ -16,24 +16,41 @@ public  class StateNormal extends IStatePacman {
 	public void moveLeft(Bord b) {
 		game.setPacman(b.getPacman());   
 		  int posx=game.getPacman().getPosX();
-		  int posy=game.getPacman().getPosY();			   
+		  int posy=game.getPacman().getPosY();		
+		  
 		  int j=posx-1;
-		  if(j<0)return ;
+		  if(j<0 && posx!=0 && posy!=0 )return ;
+		  if((posx==0&&posy==0)){
+			  j=9;
+			  posy=0;
+		  }
+		 
 		  if(game.getNumberPacgammes()<=0)return ;
 		  if((game.borde[j][posy]).getType()==Element.OBSTACLE){
 			  return ;
 		  }
 		  if((game.borde[j][posy]).getType()!=Element.OBSTACLE){
 			  if(game.borde[j][posy].getType()==Element.PACGOMME){
-				   game.getPacman().mangePacgomme(game.borde[j][posy].getMyPacgome());
+				  game.getPacman().mangePacgomme(game.borde[j][posy].getMyPacgome());
 				  game.setNumberPacgammes();	   
 			  }else if(game.borde[j][posy].getType()==Element.FANTOME){
-					   game.borde[j][posy].getFantom1().setPosX(j+1);
+				  if((posx==0&&posy==0)){
+					   game.borde[j][posy].getFantom1().setPosX(0);
+					   
+				  }else {
+					  game.borde[j][posy].getFantom1().setPosX(j+1);
+				  }
 					   game.getPacman().setVie();
+			  } if((posx==0&&posy==0)){
+				  game.setCellNull(0,0,game.borde[j][posy]);
+				  game.setCell(j,posy,game.getPacman());
+				  game.getPacman().setPosX(j);
+				  
+			  }else {
+				  game.setCellNull(j+1,posy,game.borde[j][posy]);
+				  game.setCell(j,posy,game.getPacman());
+				  game.getPacman().setPosX(j);
 			  }
-			  game.setCellNull(j+1,posy,game.borde[j][posy]);
-			  game.setCell(j,posy,game.getPacman());
-			  game.getPacman().setPosX(j);			 		   
 		  }	  
 		   
 	 }
@@ -45,8 +62,12 @@ public  class StateNormal extends IStatePacman {
 		  int posx=game.getPacman().getPosX();
 		  int posy=game.getPacman().getPosY();
 		  int j=posx+1;
-		  if(j>=game.borde.length)return ;
-		  //if (getNumberPacgammes()==0);
+		  if(j>=game.borde.length && posx!=9&&posy!=0 )return ;
+		  if((posx==9&&posy==0)){
+			  j=0;
+			  posy=0;
+		  }
+		  
 		  if((game.borde[j][posy]).getType()==Element.OBSTACLE) {
 			  return ;
 		  }
@@ -56,13 +77,26 @@ public  class StateNormal extends IStatePacman {
 				  game.setNumberPacgammes();		  
 			  }
 			  else if(game.borde[j][posy].getType()==Element.FANTOME){
-				  game.borde[j][posy].getFantom1().setPosX(j-1);
-					  game.getPacman().setVie();
+				  if((posx==9&&posy==0)){
+					  game.borde[9][posy].getFantom1().setPosX(j-1);
+				  }else {
+				     game.borde[j][posy].getFantom1().setPosX(j-1);
+					  
+				  }
+				  game.getPacman().setVie();
 			  }  
 		  }
-		  game.setCellNull(j-1,posy,game.borde[j][posy]);
-		  game.setCell(j,posy,game.getPacman());
-		  game.getPacman().setPosX(j);			   
+		
+		  if((posx==9&&posy==0)){
+			      game.setCellNull(9,0,game.borde[0][0]);
+		           game.setCell(0,0,game.getPacman());
+		           game.getPacman().setPosX(0);
+		           
+		  }else {
+			  game.setCellNull(j-1,posy,game.borde[j][posy]);
+			  game.setCell(j,posy,game.getPacman());
+			  game.getPacman().setPosX(j);	
+		  }
 		  
 	 }
 	
