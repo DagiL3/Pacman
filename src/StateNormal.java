@@ -142,7 +142,6 @@ public  class StateNormal extends IStatePacman {
 	@Override
 	public Direction moveRightF(Bord b){	
 		fantome=b.getFantom1();
-		System.out.print(fantome.getPosX());
 		int posx=fantome.getPosX();
 		int posy=fantome.getPosY();	
 		int j=posx+1;

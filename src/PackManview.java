@@ -164,7 +164,6 @@ public class PackManview extends JPanel implements ActionListener,KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		game.mykeybord = e.getKeyCode();
-		System.out.println("je vais au right: "+game.mykeybord+":");
 	}
 	/**
 	 * @brief  la méthode est invoquée automatiquement chaque fois que le clavier est relache

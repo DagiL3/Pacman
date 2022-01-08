@@ -72,7 +72,6 @@ abstract class IStatePacman {
 		{
 			diex=game.getRandom();
 		}
-		System.out.println(diex+"RED");
 		switch(diex){   
 		case RIGHT:
 			game.status=moveRightF(current);
@@ -110,7 +109,6 @@ abstract class IStatePacman {
 		{
 			diex=game.getRandom();
 		}
-		System.out.println(diex+"cyan");
 		switch(diex){ 		
 		case RIGHT:
 			game.status2=moveRightF(current);
@@ -147,7 +145,6 @@ abstract class IStatePacman {
 		if(game.status3==Direction.NONE || (x==xx && y==yy)) {
 			diex=game.getRandom();
 		}
-		System.out.println(diex+"DARK_GRAY");
 		switch(diex){
 		case RIGHT:
 			game.status3=moveRightF(current);
@@ -184,7 +181,6 @@ abstract class IStatePacman {
 		if(game.status4==Direction.NONE || (x==xx && y==yy)) {
 			diex=game.getRandom();
 		}
-		System.out.println(diex+"GREEN");
 		switch(diex){	
 		case RIGHT:
 			game.status4=moveRightF(current);

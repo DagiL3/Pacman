@@ -255,7 +255,6 @@ public class  Game {
 			setCellNullF(fx,fy,rec_avanve);
 		}else if(rec_avanve.getType()==Element.PACMAN){
 			pacman=rec_avanve.getPacman();
-			System.out.println("center: "+pacman.getPosX());
 			setCell(fx,fy,pacman);
 			pacman.setPosX(fx);	pacman.setPosY(fy);
 		}else if(rec_avanve.getType()==Element.EMPTY){
