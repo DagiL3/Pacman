@@ -36,11 +36,11 @@ public class  Game {
 	private List<Integer> colors =new ArrayList<>();
 	public int[] posxCenterFantom= {1,2,1,2};
 	public int[] posyCenterFantom= {4,4,5,5};
-	Direction StatusPacman=Direction.RIGHT;
+	
 	int index=0 ;
 	
 	/**
-	 * @brief  Eviter les fantomes de choisir  le meme direction
+	 * @brief Ajoute les 4 direction dans le tableau direction et direction1
 	 * */
 	private void createListRandom() { 		
 			direction.add(Direction.DOWN);
@@ -53,6 +53,7 @@ public class  Game {
 			direction1.add(Direction.RIGHT);
 			direction1.add(Direction.UP);			
 		}
+	
 	/**
 	 * @brief ajoute les 4 couleurs dans le tableau colors
 	 * */	
@@ -89,7 +90,7 @@ public class  Game {
 	}
 	
 	/**
-	 * @brief  change detat selon les types de pac gomme
+	 * @brief  change d etat selon les types de pac gomme
 	 * @param p est pacgomme
 	 */
 	public void addPoints(MyPacgomme p){
@@ -298,9 +299,9 @@ public class  Game {
 	 * @brief  changer la forme des labyrinthes
 	 * */
 	public void changeLabyrinthes(){	 
-		borde[4][5]=new Bord(new MyPacgomme(Pacgomme.ORANGE,4,5));
-		borde[3][7]=new Bord(new MyPacgomme(Pacgomme.ORANGE,3,7));
-		borde[4][1]=new Bord(new MyPacgomme(Pacgomme.ORANGE,4,1));
+		borde[4][5]=new Bord(new MyPacgomme(Pacgomme.BLEU,4,5));
+		borde[3][7]=new Bord(new MyPacgomme(Pacgomme.BLEU,3,7));
+		borde[4][1]=new Bord(new MyPacgomme(Pacgomme.BLEU,4,1));
 		numberPacgammes=numberPacgammes+3;
 	}
 	

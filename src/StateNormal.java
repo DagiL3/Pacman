@@ -139,7 +139,6 @@ public  class StateNormal extends IStatePacman {
 	}
 	
 	/********************************fantom*********************************************************************/
-	
 	@Override
 	public Direction moveRightF(Bord b){	
 		fantome=b.getFantom1();

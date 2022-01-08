@@ -60,10 +60,6 @@ public class PackManview extends JPanel implements ActionListener,KeyListener {
 		game.movePacman();
 	}
 	
-	public void MovementNull()
-	{
-		game.afficheStatus();
-	}	
 	
 	/**
 	 * @brief  permet de de dessiner different taille avec different couleur de rectangle pour la view

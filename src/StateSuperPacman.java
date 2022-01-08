@@ -140,7 +140,7 @@ public class StateSuperPacman extends IStatePacman{
 	/********************************fantom*********************************************************************/
 	
 	@Override
-	public Direction moveRightF(Bord b){	
+	public Direction moveRightF(Bord b){
 		fantome=b.getFantom1();
 		System.out.print(fantome.getPosX());
 		int posx=fantome.getPosX();
@@ -179,7 +179,7 @@ public class StateSuperPacman extends IStatePacman{
 	}
    
 	@Override
-	public Direction moveLeftF(Bord b){		
+	public Direction moveLeftF(Bord b){
 		fantome =b.getFantom1();
 		int posx=fantome.getPosX();
 		int posy=fantome.getPosY();	
@@ -218,7 +218,7 @@ public class StateSuperPacman extends IStatePacman{
 	}
 	
 	@Override
-	public  Direction moveDownF(Bord b){         
+	public  Direction moveDownF(Bord b){  
 		fantome =b.getFantom1();
 		int posx=fantome.getPosX();
 		int posy=fantome.getPosY();			 
@@ -256,7 +256,7 @@ public class StateSuperPacman extends IStatePacman{
 	}
 	
 	@Override
-	public  Direction moveUpF(Bord b){		
+	public  Direction moveUpF(Bord b){
 		fantome =b.getFantom1();
 		int posx=fantome.getPosX();
 		int posy=fantome.getPosY();			 
